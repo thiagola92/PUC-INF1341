@@ -37,7 +37,7 @@ Instalando é quase que natural.
 3. Executando ele deve começar uma instalação padrão.  
   * Não lembro de ter feito nada especial na instalação.  
 
-Agora você deve ter o Database instalado e no seu Windows Start:  
+Agora você deve ter o Database instalado e no seu Windows Start Menu:  
 ![Imagem do windows start menu](img/DBinstalled.png)  
 
 Agora tudo que eu estou fazendo é seguindo o guia da para **Oracle Database Express Edition**:  
