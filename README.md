@@ -41,4 +41,5 @@ Agora você deve ter o Database instalado e no seu Windows Start Menu:
 ![Imagem do windows start menu](img/DBinstalled.png)  
 
 Agora tudo que eu estou fazendo é seguindo o guia da para **Oracle Database Express Edition**:  
-https://docs.oracle.com/cd/E17781_01/admin.112/e18585/toc.htm
+https://docs.oracle.com/cd/E17781_01/admin.112/e18585/toc.htm  
+Siga esse guia até terminar a parte 4, isso deve dar o suficiente para poder começar a fazer algo.  
