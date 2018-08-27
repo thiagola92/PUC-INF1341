@@ -59,7 +59,7 @@ updateSales.setString(2, "Colombian");
 updateSales.executeUpdate();
 ```
 
-Pode até parecerem indiferentes, mas em um você já deixa o comando compilado antes de precisar dele. Quando precisar, basta substituir os valores e utilizar.  
+Podem até parecerem indiferentes, mas em um você já deixa o comando compilado antes de precisar dele. Quando precisar, basta substituir os valores e utilizar.  
 
 #### Extra
 Se o comando executada é de UPDATE/INSERT/DELETE, ele retorna o número de linhas afetadas (pode retornar 0 linhas afetadas).  
