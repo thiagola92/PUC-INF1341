@@ -13,11 +13,11 @@ Pelo o nome você consegue ter uma idéia que é o plano de alguém para acessar
 Pelo o nome você já sabe que a idéia dele é otimizar algo.  
 **Otimizador**: É responsável por fazer o *plano de acesso* aos dados. Em outras palavras, descobrir a maneira mais eficiente de acessar os dados.  
 
-A idéia é que o usuário não precisa saber como os dados estão armazenados para poder fazer a consulta SQL.  
-Você não sabe se os arquivos estão em ordem sequencial, se o acesso deles é por hash, se é uma arvore B+... Você sabe que o otimizador vai tentar pegar o melhor caminho para a sua consulta.  
+A idéia é que o usuário não precisa saber como os dados estão armazenados para poder fazer a query SQL.  
+Você não sabe se os arquivos estão em ordem sequencial, se o acesso deles é por hash, se é uma arvore B+... Você sabe que o otimizador vai tentar pegar o melhor caminho para a sua query.  
 
-# Etapas de uma consulta
-![Etapas da consulta](/Aula-03/etapas_consulta.png)  
+# Etapas de uma query
+![Etapas da query](/Aula-03/etapas_consulta.png)  
 **Parse Query**: Verifica se está escrita corretamente e se os objetos são objetos do banco  
 **Check de Semântica**: Válida a semântica   
 **Query Rewrite**: Re-escreve a query de forma que seja melhor aproveitada para a otimização do plano de acesso  
@@ -29,7 +29,7 @@ A idéia aqui é mostrar que não é só escrever um comando e ele executa, o co
 # Prepared Statements
 (Comandos Preparados)  
 
-A ultima etapa em "Etapas de uma consulta" é gerar o código. Nós passamos um comando SQL e ele gera um código na linguagem do banco de dados.  
+A ultima etapa em "Etapas de uma query" é gerar o código. Nós passamos um comando SQL e ele gera um código na linguagem do banco de dados.  
 Você pode achar que o banco de dados gera esse código, usa ele e joga ele fora. Isso seria ineficiente, pois a chance de alguém fazer uma query idêntica é muito grande e se gasta tempo passando por todas as etapas para gerar código.  
 
 **Prepared Statements**: Uma versão compilada de um comando SQL mantida salva.  
@@ -53,6 +53,7 @@ stmt.executeUpdate(updateString);
 Como você já pode deixar uma query SQL preparada em Java:  
 ```Java
 PreparedStatement updateSales = con.preparedStatement("UPDATE COFFEES SET SALE = ? WHERE COF_NAME LIKE ?");
+
 updateSales.setInt(1, 75);
 updateSales.setString(2, "Colombian");
 
@@ -102,4 +103,81 @@ O que vai acontecer com a query no final?
 SELECT title, description, releaseDate, body FROM pressReleases WHERE pressReleaseID = 5 OR 1=1
 ```  
 
-21:52
+#### Soluções
+1. Válidar a entrada
+2. Utilizar **Bind Variables**
+3. Transferir código de forma adequada para Procedimentos Armazenados  
+...  
+
+Existem várias soluções mas vamos ver apenas a *Bind Variables*.  
+
+**Bind Variables**: São simplesmente placeholders, buracos na chamada SQL que você tem que substituir com as variáveis válidas. Ao tentar subsituir, acontece uma verificação para validar, ter certeza que você passou o tipo de variável certa.  
+
+```Java
+PreparedStatement updateSales = con.preparedStatement("UPDATE COFFEES SET SALE = ? WHERE COF_NAME LIKE ?");
+
+// Recebendo valores do usuário
+int sale = request.getParameter("sale");
+String name = request.getParameter("name");
+
+// Bind Variables
+updateSales.setInt(1, sale);
+updateSales.setString(2, name);
+
+updateSales.executeUpdate();
+```
+
+As duas funções responsáveis por inserir as variáveis vão verificar elas.  
+Por exemplo, `setString(2, name)` provávelmente está verificando se você não inseriu apóstrofe no meio da string de forma a tentar inserir código na query SQL ao mesmo tempo que faz um parse para o tipo desejado.  
+
+# Views e Materialized Views
+**View**: É uma **tabela virtual** criada atráves de uma query, ou seja, após fazer uma query e obter uma tabela, essa **query** é armazenada para futuro uso.  
+Essa tabela não é uma cópia das informações da original, mas sim um ponteiro para elas.  
+
+Como View é uma query já executada, você ganha o mesmo benefícios do Prepared Statements, onde não precisa gerar o código da query novamente. Porém, Prepared Statement permite passar parâmetros diferentes pra mesma query, Views não permitem.  
+
+Como Views são referências a dados de tabelas, se você atualizar as informações da tabela, essas Views também vão ser atualizadas. Logo os programas que trabalham usando essas Views, não vão parar de funcionar.  
+
+#### Extra
+Eu não testei nada aqui, então estou falando da boca pra fora.  
+
+Esse código vai gerar uma View exibindo todas as informações dos funcionários que forem do RJ.  
+```SQL
+CREATE VIEW FuncionariosRJ AS
+SELECT col1, col2, ..., coln
+FROM Funcionarios
+WHERE base = 'RJ'
+```
+
+Problema disso é que se depois alguém tentar inserir nessa View, ela vai conseguir inserir pessoas que não são do RJ.  
+```SQL
+INSERT INTO FuncionariosRJ (..., base)
+VALUES (..., 'SP')
+```
+
+Para impedir esse tipo de inserção precisamos deixar claro que não aceitamos items que não passam da condição `WHERE`. Isso é efeito usando `WITH CHECK OPTION`.  
+```SQL
+CREATE VIEW FuncionariosRJ AS
+SELECT col1, col2, ..., coln
+FROM Funcionarios
+WHERE base = 'RJ'
+WITH CHECK OPTION
+```
+<sub>O `OPTION` também era para estar em roxo</sub>
+
+Com essa opção, você criou uma View onde toda condição do definida pelo `WHERE` tem que ser obrigatório. Elementos que não tiverem essas condições não podem ser inseridos na View.  
+
+**Materialized View**: É uma **tabela real** criada atráves de uma query, ou seja, após fazer uma query e obter uma tabela, essa **tabela** é armazenada para futuro uso.  
+Essa tabela é uma cópia das informações da original.  
+
+Como Materialized Views são copia da original, dependendo de quando copiou podem estar desatualizadas. Por isso se estabelecia de quanto em quanto tempo se atualiza.  
+
+#### Velocidade
+
+**Sem View**: Você passa por todas etapas de uma query para transformar em código, depois executar e obter a tabela.  
+**View**: Você já tem o código da query pronto, só precisa executar e obter a tabela.  
+**Materialized View**: Você já tem uma tabela da query pronta.  
+
+Lembre que se o banco de dados for *muito muito muito* grande, uma query pode custar um tempo grande. Mesmo uma tabela desatualizada por X segundos pode ser bem vista.  
+
+47:30
