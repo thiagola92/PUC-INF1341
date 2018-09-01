@@ -308,7 +308,6 @@ END;
 | :OLD     |          | Existe | Existe   |
 
 
-
 PL/SQL Triggers:  
 https://www.tutorialspoint.com/plsql/plsql_triggers.htm  
 https://www.guru99.com/triggers-pl-sql.html  
