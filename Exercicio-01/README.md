@@ -242,3 +242,43 @@ END;
 # 7
 Escreva um comando que liste todos os campos da conta_corrente de um cliente,
 dado o seu nome. Utilize a função da questão 4. 
+
+```SQL
+SELECT *
+    FROM conta_corrente
+    WHERE id_cliente = procura_id('THI');
+```
+
+# 8
+Faça uma função que receba o id do cliente e um valor inteiro e que atualize e
+retorne o saldo do cliente. 
+
+```SQL
+CREATE OR REPLACE FUNCTION add_saldo(id INTEGER, value INTEGER)
+    RETURN INTEGER
+AS
+    update_value INTEGER;
+BEGIN
+    SELECT saldo
+        INTO update_value
+        FROM conta_corrente
+        WHERE id_cliente = id;
+    
+    update_value := value + update_value;
+    
+    UPDATE conta_corrente
+        SET saldo = update_value
+        WHERE id_cliente = id;
+    
+    RETURN update_value;
+    
+EXCEPTION
+    WHEN NO_DATA_FOUND
+    THEN raise_application_error(-20999, 'ID do Cliente Inválida');
+    
+END;
+```
+
+# 9
+O que faz a função raise_application_error? O que significa o primeiro parâmetro
+da função? Quais os valores possíveis? Explique. 
