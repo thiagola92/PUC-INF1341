@@ -85,6 +85,9 @@ CALL excluir_cliente(10);
 
 SELECT * 
     FROM cliente;
+    
+SELECT *
+    FROM hcli;
 ```
 
 Erro ao tentar excluir cliente que não existe na tabela
@@ -93,4 +96,149 @@ CALL excluir_cliente(11);
 
 SELECT * 
     FROM cliente;
+    
+SELECT *
+    FROM hcli;
 ```
+
+# 2
+Crie Trigger de exclusão de um cliente e que salve na tabela hcli o id e o nome do
+cliente a ser excluído.
+
+```SQL
+CREATE OR REPLACE TRIGGER cliente_excluido
+    BEFORE
+      DELETE
+      ON CLIENTE
+      FOR EACH ROW
+BEGIN
+    INSERT INTO hcli VALUES (:OLD.id, :OLD.nome);
+END;
+```
+
+Testando deletar manualmente para ver se o trigger é ativado
+```SQL
+DELETE
+    FROM cliente
+    WHERE id = 9;
+
+SELECT *
+    FROM cliente;
+    
+SELECT *
+    FROM hcli;
+```
+
+# 3
+Que alterações você faria em sp_excluicliente (questão 1) se já houvesse o trigger
+de exclusão para a tabela cliente (questão 2)? 
+
+```SQL
+CREATE OR REPLACE PROCEDURE excluir_cliente(id_cliente INTEGER)
+AS
+BEGIN
+    DELETE
+        FROM cliente
+        WHERE id = id_cliente;
+        
+EXCEPTION
+    WHEN NO_DATA_FOUND
+    THEN raise_application_error( -20001, 'ID do Cliente Inválida' );
+
+END;
+```
+
+```SQL
+CALL excluir_cliente(8);
+
+SELECT *
+    FROM cliente;
+    
+SELECT *
+    FROM hcli;
+```
+
+# 4
+Crie uma função procuraid() que recebe como parâmetro o nome do cliente e que
+retorna o id do cliente.
+
+```SQL
+CREATE OR REPLACE FUNCTION procura_id(nome_cliente CHAR)
+    RETURN INTEGER
+AS
+    id_cliente INTEGER;
+BEGIN
+    SELECT id
+        INTO id_cliente
+        FROM cliente
+        WHERE nome = nome_cliente;
+    
+    RETURN id_cliente;
+    
+EXCEPTION
+    WHEN NO_DATA_FOUND
+    THEN raise_application_error(-20002, 'ID do Cliente Inválida');
+    
+END;
+```
+
+```SQL
+SET SERVEROUTPUT ON FORMAT WRAPPED;
+
+DECLARE
+    id INTEGER;
+BEGIN
+    id := procura_id('ANA');
+    DBMS_OUTPUT.PUT_LINE('id = ' || id);
+END;
+```
+
+# 5
+Crie SP para alterar o nome de um cliente. A SP recebe como parâmetro o id e o
+novo nome do cliente. 
+
+```SQL
+CREATE OR REPLACE PROCEDURE alterar_nome(id_cliente INTEGER, novo_nome CHAR)
+AS
+BEGIN
+    UPDATE cliente
+        SET nome = novo_nome
+        WHERE id = id_cliente
+          AND nome <> novo_nome;
+        
+EXCEPTION
+    WHEN NO_DATA_FOUND
+    THEN raise_application_error(-20003, 'ID do Cliente Inválida');
+END;
+```
+
+```SQL
+CALL alterar_nome(1, 'THI');
+
+SELECT *
+    FROM cliente;
+    
+SELECT *
+    FROM troca_nome_cliente;
+```
+
+# 6
+Crie trigger para inserir na tabela troca_nome_cliente o id do cliente, o nome
+antigo e o nome novo sempre que for alterado o nome de um cliente. 
+
+```SQL
+CREATE OR REPLACE TRIGGER nome_alterado
+    BEFORE
+        UPDATE
+        ON cliente
+        FOR EACH ROW
+BEGIN
+    INSERT
+        INTO troca_nome_cliente
+        VALUES(:OLD.id, :OLD.nome, :NEW.nome);
+END;
+```
+
+# 7
+Escreva um comando que liste todos os campos da conta_corrente de um cliente,
+dado o seu nome. Utilize a função da questão 4. 
