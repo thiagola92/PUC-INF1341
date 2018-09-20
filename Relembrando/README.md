@@ -56,10 +56,10 @@ CREATE TABLE CD_de_musica (
   data_lancamento   DATE          DEFAULT SYSDATE,
   cd_indicado       INTEGER       NULL,
 
-  PRIMARY KEY (codigo_cd),
-  FOREIGN KEY (codigo_gravadora)
-  REFERENCES Gravadora (codigo_gravadora),
-  CHECK (preco_venda > 0)
+  PRIMARY KEY(codigo_cd),
+  FOREIGN KEY(codigo_gravadora)
+  REFERENCES Gravadora(codigo_gravadora),
+  CHECK(preco_venda > 0)
 );
 ```
 
@@ -115,4 +115,68 @@ SELECT nome_cd, preco_venda
   WHERE codigo_gravadora > 3
     AND codigo_gravadora IS NOT NULL
   ORDER BY nome_cd, preco_venda;
+```
+
+# Visão
+
+```SQL
+CREATE VIEW nome_da_view
+AS
+  SELECT codigo_cd, codigo_gravadora
+  FROM CD_de_musica;
+```
+
+# Tabela Temporária
+
+`GLOBAL` = todos podem ver
+`LOCAL` = apenas quem criou pode ver
+
+```SQL
+CREATE GLOBAL TEMPORARY TABLE temp_cd (
+  codigo INTEGER,
+  nome    VARCHAR(60),
+  preco   DECIMAL(16,2),
+  PRIMARY KEY*codigo(
+);
+```
+
+```SQL
+CREATE LOCAL TEMPORARY TABLE temp_cd (
+  codigo INTEGER,
+  nome    VARCHAR(60),
+  preco   DECIMAL(16,2),
+  PRIMARY KEY*codigo(
+);
+```
+
+# Savepoint
+
+```SQL
+SAVEPOINT nome_savepoint;
+```
+
+# Rollback
+
+```SQL
+ROLLBACK nome_savepoint;
+```
+
+# Níveis de Isolamento
+
+`SERIALIZABLE` =  
+`READ COMMITED` =  
+`REPEATABLE READ` =  
+`READ UNCOMMITED` =  
+
+```SQL
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE
+```
+```SQL
+SET TRANSACTION ISOLATION LEVEL READ COMMITED
+```
+```SQL
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
+```
+```SQL
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITED
 ```
