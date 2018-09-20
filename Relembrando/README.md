@@ -149,6 +149,46 @@ CREATE LOCAL TEMPORARY TABLE temp_cd (
 );
 ```
 
+# Procedimento
+
+```SQL
+CREATE OR REPLACE PROCEDURE deleta_cd(preco DECIMAL)
+AS
+BEGIN
+    DELETE
+        FROM CD_de_musica
+        WHERE preco_venda = preco;
+END;
+```
+
+Se não tiver parametros, não utilizar parênteses
+```SQL
+CREATE OR REPLACE PROCEDURE deleta_cd
+AS
+BEGIN
+    DELETE
+        FROM CD_de_musica
+        WHERE preco_venda > preco;
+END;
+```
+
+# Função
+
+```SQL
+CREATE OR REPLACE FUNCTION deleta_cd(preco DECIMAL)
+    RETURN DECIMAL
+AS
+    return_value DECIMAL;
+BEGIN
+    SELECT *
+        INTO return_value
+        FROM CD_de_musica
+        WHERE preco_venda = preco;
+        
+    RETURN return_value;
+END;
+```
+
 # Savepoint
 
 ```SQL
