@@ -45,6 +45,30 @@ Nos meus exemplos eu vou seguir o seguinte:
 | LIKE        |
 | IN          |
 
+# DDL (Data Definition Language)
+* CREATE
+* DROP
+* ALTER
+* TRUNCATE
+* COMMENT
+* RENAME
+
+# DML (Data Manipulation Language)
+* SELECT
+* INSERT
+* UPDATE
+* DELETE
+
+# DCL (Data Control Language)
+* GRANT
+* REVOKE
+
+# TCL (Transaction Control Language)
+* COMMIT
+* ROLLBACK
+* SAVEPOINT
+* SET TRANSACTION
+
 # Criar Tabela
 
 ```SQL
