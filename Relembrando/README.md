@@ -173,6 +173,20 @@ CREATE LOCAL TEMPORARY TABLE temp_cd (
 );
 ```
 
+# Bloco de Comandos
+
+```SQL
+DECLARE
+  nome    VARCHAR(60)
+  idade   INTEGER := 24;
+BEGIN
+  nome := 'Thiago';
+  idade := idade + 10;
+EXCEPTION
+  -- exceptions
+END;
+```
+
 # Procedimento
 
 ```SQL
