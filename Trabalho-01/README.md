@@ -12,13 +12,13 @@ CREATE TABLE NotasVenda(
         KEY(Numero),
     FOREIGN
         KEY(CodigoCliente)
-        REFERENCES Cliente(CodigoCliente)
+        REFERENCES Cliente(Codigo)
 );
 ```
 
 ```SQL
 CREATE TABLE Cliente(
-    Codigo              INTEGER,
+    Codigo              INTEGER         PRIMARY KEY,
     Nome                VARCHAR(255),
     Logradouro          VARCHAR(255),
     Numero              INTEGER,
