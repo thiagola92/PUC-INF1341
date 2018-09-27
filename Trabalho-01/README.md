@@ -63,17 +63,6 @@ CREATE TABLE Cliente(
 ## Base de dados do apoio ao controle de funcionários
 
 ```SQL
-CREATE TABLE Cargo(
-    Codigo      INTEGER,
-    Descricao   VARCHAR(255),
-    SalarioBase NUMBER(15,2),
-    
-    PRIMARY
-        KEY(Codigo)
-);
-```
-
-```SQL
 CREATE TABLE Departamento(
     CodigoDepartamento  INTEGER,
     Nome                VARCHAR(255),
@@ -81,5 +70,16 @@ CREATE TABLE Departamento(
     
     PRIMARY
         KEY(CodigoDepartamento)
+);
+```
+
+```SQL
+CREATE TABLE Cargo(
+    Codigo      INTEGER,
+    Descricao   VARCHAR(255),
+    SalarioBase NUMBER(15,2),
+    
+    PRIMARY
+        KEY(Codigo)
 );
 ```
