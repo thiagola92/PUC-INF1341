@@ -17,6 +17,21 @@ CREATE TABLE NotasVenda(
 ```
 
 ```SQL
+CREATE TABLE ItensNota(
+    Numero              INTEGER,
+    NumeroMercadoria    INTEGER,
+    Quantidade          INTEGER,
+    ValorUnitario       NUMBER(10,2),
+    
+    PRIMARY
+        KEY(Numero, NumeroMercadoria),
+    FOREIGN
+        KEY(NumeroMercadoria)
+        REFERENCES Mercadorias(NumeroMercadoria)
+);
+```
+
+```SQL
 CREATE TABLE Cliente(
     Codigo              INTEGER         PRIMARY KEY,
     Nome                VARCHAR(255),
