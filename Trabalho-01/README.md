@@ -15,3 +15,16 @@ CREATE TABLE NotasVenda(
         REFERENCES Cliente(CodigoCliente)
 );
 ```
+
+```SQL
+CREATE TABLE Cliente(
+    Codigo              INTEGER,
+    Nome                VARCHAR(255),
+    Logradouro          VARCHAR(255),
+    Numero              INTEGER,
+    Complemento         VARCHAR(255),
+    Cidade              VARCHAR(255),
+    Estado              VARCHAR(2),
+    NumeroContribuinte  INTEGER
+);
+```
