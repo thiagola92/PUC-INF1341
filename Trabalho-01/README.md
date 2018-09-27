@@ -32,6 +32,17 @@ CREATE TABLE ItensNota(
 ```
 
 ```SQL
+CREATE TABLE Mercadorias(
+    NumeroMercadoria        INTEGER,
+    Descricao               VARCHAR(255),
+    QuantidadeEstoque       INTEGER,
+    
+    PRIMARY
+        KEY(NumeroMercadoria)
+);
+```
+
+```SQL
 CREATE TABLE Cliente(
     Codigo              INTEGER,
     Nome                VARCHAR(255),
