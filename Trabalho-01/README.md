@@ -134,7 +134,7 @@ CREATE OR REPLACE TRIGGER AlteracaoEstoque
 BEGIN
     IF(:NEW.QuantidadeEstoque < 0) THEN
         raise_application_error(-20000, 'Nao existe quantidade suficiente no estoque');
-    ELSIF(:NEW.QuantidadeEstoque <=3) THEN
+    ELSIF(:NEW.QuantidadeEstoque <= 3) THEN
         raise_application_error(-20000, 'Estoque baixo');
     END IF;
 END;
