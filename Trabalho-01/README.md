@@ -63,6 +63,27 @@ CREATE TABLE Cliente(
 ## Base de dados do apoio ao controle de funcionários
 
 ```SQL
+CREATE TABLE Funcionario(
+    CPF                 VARCHAR(15),
+    Nome                VARCHAR(255),
+    Telefone            INTEGER,
+    Logradouro          VARCHAR(255),
+    Numero              INTEGER,
+    Complemento         VARCHAR(255),
+    Cidade              VARCHAR(255),
+    Estado              VARCHAR(2),
+    CodigoDepartamento  INTEGER,
+    
+    PRIMARY
+        KEY(CPF),
+    FOREIGN
+        KEY(CodigoDepartamento)
+        REFERENCES Departamento(CodigoDepartamento)
+        
+);
+```
+
+```SQL
 CREATE TABLE CargosFunc(
     CPF                 VARCHAR(15),
     CodigoCargo         INTEGER,
