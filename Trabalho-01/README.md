@@ -123,7 +123,7 @@ CREATE TABLE Cargo(
 );
 ```
 
-# 3
+# 3 & 5
 
 ```SQL
 CREATE OR REPLACE TRIGGER AlteracaoEstoque
