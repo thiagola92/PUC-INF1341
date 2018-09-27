@@ -135,7 +135,7 @@ BEGIN
     IF(:NEW.QuantidadeEstoque < 0) THEN
         RAISE nao_tem_suficiente;
     ELSIF(:NEW.QuantidadeEstoque <= 3) THEN
-        raise_application_error(-20000, 'Estoque baixo');
+        raise_application_error(-20000, 'Estoque baixo, faca mais pedido do produto');
     END IF;
 EXCEPTION
     WHEN nao_tem_suficiente THEN
