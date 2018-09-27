@@ -72,3 +72,14 @@ CREATE TABLE Cargo(
         KEY(Codigo)
 );
 ```
+
+```SQL
+CREATE TABLE Departamento(
+    CodigoDepartamento  INTEGER,
+    Nome                VARCHAR(255),
+    CPFChefe            VARCHAR(15),
+    
+    PRIMARY
+        KEY(CodigoDepartamento)
+);
+```
