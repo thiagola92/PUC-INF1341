@@ -40,7 +40,9 @@ CREATE TABLE Mercadorias(
     QuantidadeEstoque       INTEGER,
     
     PRIMARY
-        KEY(NumeroMercadoria)
+        KEY(NumeroMercadoria),
+    CONSTRAINT checkQuantidadeEstoque
+        CHECK (QuantidadeEstoque > 0)
 );
 ```
 
