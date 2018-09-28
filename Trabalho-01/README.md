@@ -123,7 +123,7 @@ CREATE TABLE Cargo(
 );
 ```
 
-# 3 & 5
+# 3
 
 ```SQL
 CREATE OR REPLACE TRIGGER AlteracaoEstoque
@@ -132,13 +132,8 @@ CREATE OR REPLACE TRIGGER AlteracaoEstoque
         ON Mercadorias
         FOR EACH ROW
 BEGIN
-    IF(:NEW.QuantidadeEstoque < 0) THEN
-        RAISE nao_tem_suficiente;
-    ELSIF(:NEW.QuantidadeEstoque <= 3) THEN
+    IF(:NEW.QuantidadeEstoque <= 3) THEN
         raise_application_error(-20000, 'Estoque baixo, faca mais pedido do produto');
     END IF;
-EXCEPTION
-    WHEN nao_tem_suficiente THEN
-        raise_application_error(-20000, 'Nao existe quantidade suficiente no estoque');
 END;
 ```
