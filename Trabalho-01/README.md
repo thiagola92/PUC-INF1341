@@ -1,6 +1,6 @@
 # Tabelas
 
-## Bases de dados do sistema de compras
+## Bases de dados do sistema de vendas
 
 ```SQL
 CREATE TABLE NotasVenda(
@@ -120,6 +120,61 @@ CREATE TABLE Cargo(
     Codigo      INTEGER,
     Descricao   VARCHAR(255),
     SalarioBase NUMBER(15,2),
+    
+    PRIMARY
+        KEY(Codigo)
+);
+```
+
+# 1
+
+## Base de dados do sistema de compras
+
+```SQL
+CREATE TABLE NotaFiscal(
+    Numero                  INTEGER,
+    --NumeroDaCompra          INTEGER,
+    Data                    DATE,
+    CodigoFornecedor        INTEGER,
+    
+    PRIMARY
+        KEY(Numero),
+    --FOREIGN
+        --KEY(NumeroDaCompra)
+        --REFERENCES ItensComprados(Numero),
+    FOREIGN
+        KEY(CodigoFornecedor)
+        REFERENCES Fornecedor(Codigo)
+);
+```
+
+```SQL
+CREATE TABLE ItensComprados(
+    Numero              INTEGER,
+    NumeroMercadoria    INTEGER,
+    Quantidade          INTEGER,
+    ValorUnitario       NUMBER(10,2),
+    ValorTotal          NUMBER,
+    
+    PRIMARY
+        KEY(Numero, NumeroMercadoria),
+    FOREIGN
+        KEY(NumeroMercadoria)
+        REFERENCES Mercadorias(NumeroMercadoria)
+);
+```
+
+```SQL
+CREATE TABLE Fornecedor(
+    Codigo              INTEGER,
+    Nome                VARCHAR(255),
+    Telefone            VARCHAR(255),
+    Logradouro          VARCHAR(255),
+    Numero              INTEGER,
+    Complemento         VARCHAR(255),
+    Cidade              VARCHAR(255),
+    Estado              VARCHAR(2),
+    NumeroContribuinte  INTEGER,
     
     PRIMARY
         KEY(Codigo)
