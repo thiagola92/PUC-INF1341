@@ -139,3 +139,11 @@ BEGIN
     END IF;
 END;
 ```
+
+# 5
+
+Foi adicionada a seguinte linha na tabela Mercadorias
+```SQL
+    CONSTRAINT checkQuantidadeEstoque
+        CHECK (QuantidadeEstoque > 0)
+```
