@@ -50,6 +50,7 @@ CREATE TABLE Mercadorias(
 CREATE TABLE Cliente(
     Codigo              INTEGER,
     Nome                VARCHAR(255),
+    Telefone            VARCHAR(255),
     Logradouro          VARCHAR(255),
     Numero              INTEGER,
     Complemento         VARCHAR(255),
