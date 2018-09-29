@@ -135,7 +135,7 @@ CREATE TABLE NotaFiscal(
     Numero                  INTEGER,
     NumeroDaCompra          INTEGER,
     NumeroMercadoria        INTEGER,
-    Data                    DATE,
+    DataCompra              DATE,
     CodigoFornecedor        INTEGER,
     
     PRIMARY
