@@ -239,10 +239,12 @@ CREATE OR REPLACE TRIGGER AlteracaoEstoque
         FOR EACH ROW
 BEGIN
     IF(:NEW.QuantidadeEstoque <= 3) THEN
-        raise_application_error(-20000, 'Estoque baixo, faca mais pedido do produto');
+        raise_application_error(-20000, 'Estoque baixo, enviando e-mail');
     END IF;
 END;
 ```
+
+# 4
 
 # 5
 
@@ -251,3 +253,11 @@ Foi adicionada a seguinte linha na tabela Mercadorias
     CONSTRAINT checkQuantidadeEstoque
         CHECK (QuantidadeEstoque > 0)
 ```
+
+# 6
+
+# 7
+
+# 8
+
+# 9
