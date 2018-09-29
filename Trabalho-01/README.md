@@ -246,6 +246,36 @@ END;
 
 # 4
 
+```SQL
+CREATE OR REPLACE TRIGGER VendaProduto
+    BEFORE
+        INSERT
+        ON ItensNota
+        FOR EACH ROW
+DECLARE
+    -- Preço Ultima Compra
+    PUC     NUMBER(10,2);
+    
+    -- Maior Data (ultima compra)
+    MD      DATE;
+BEGIN
+    SELECT MAX(DataCompra)
+        INTO MD
+        FROM NotaFiscal
+        WHERE NumeroMercadoria = :NEW.NumeroMercadoria;
+        
+    SELECT ValorUnitario
+        INTO PUC
+        FROM NotaFiscal
+        WHERE NumeroMercadoria = :NEW.NumeroMercadoria
+        AND DataCompra = MD;
+        
+    IF(:NEW.ValorUnitario < PUC) THEN
+        raise_application_error(-20001, 'Vendendo por menos que o quanto comprou');
+    END IF;
+END;
+```
+
 # 5
 
 Foi adicionada a seguinte linha na tabela Mercadorias
