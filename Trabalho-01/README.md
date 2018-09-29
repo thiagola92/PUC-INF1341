@@ -182,6 +182,28 @@ CREATE TABLE Fornecedor(
 );
 ```
 
+# 2
+
+```SQL
+CREATE OR REPLACE PROCEDURE HistoricoDeEmpresa(Empresa VARCHAR)
+AS
+    CodigoCliente       INTEGER;
+    CodigoFornecedor    INTEGER;
+BEGIN
+    SELECT Codigo
+        INTO CodigoCliente
+        FROM Cliente
+        WHERE Empresa = Nome;
+    
+    SELECT Codigo
+        INTO CodigoFornecedor
+        FROM Fornecedor
+        WHERE Empresa = Nome;
+        
+    -- TODO
+END;
+```
+
 # 3
 
 ```SQL
