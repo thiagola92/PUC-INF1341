@@ -227,6 +227,60 @@ BEGIN
 END;
 ```
 
+# Gatilho
+
+```SQL
+CREATE OR REPLACE TRIGGER cd_adicionado
+  BEFORE
+    INSERT
+    ON CD_de_musica
+DECLARE
+  -- variables
+BEGIN
+  -- code
+END;
+```
+
+Você pode escolher outras ações que vão ativar o gatilho ou escolher mais que uma  
+```SQL
+CREATE OR REPLACE TRIGGER cd_adicionado
+  BEFORE
+    INSERT OR UPDATE OR DELETE
+    ON CD_de_musica
+DECLARE
+  -- variables
+BEGIN
+  -- code
+END;
+```
+
+Você pode disparar o evento depois que fizer as ações  
+```SQL
+CREATE OR REPLACE TRIGGER cd_adicionado
+  AFTER
+    INSERT OR UPDATE OR DELETE
+    ON CD_de_musica
+DECLARE
+  -- variables
+BEGIN
+  -- code
+END;
+```
+
+Você pode mandar fazer para cada linha que foi alvo da ação  
+```SQL
+CREATE OR REPLACE TRIGGER cd_adicionado
+  AFTER
+    INSERT OR UPDATE OR DELETE
+    ON CD_de_musica
+    FOR EACH ROW
+DECLARE
+  -- variables
+BEGIN
+  -- code
+END;
+```
+
 # Savepoint
 
 ```SQL
