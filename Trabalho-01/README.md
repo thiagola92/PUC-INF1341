@@ -133,15 +133,16 @@ CREATE TABLE Cargo(
 ```SQL
 CREATE TABLE NotaFiscal(
     Numero                  INTEGER,
-    --NumeroDaCompra          INTEGER,
+    NumeroDaCompra          INTEGER,
+    NumeroMercadoria        INTEGER,
     Data                    DATE,
     CodigoFornecedor        INTEGER,
     
     PRIMARY
         KEY(Numero),
-    --FOREIGN
-        --KEY(NumeroDaCompra)
-        --REFERENCES ItensComprados(Numero),
+    FOREIGN
+        KEY(NumeroDaCompra, NumeroMercadoria)
+        REFERENCES ItensComprados(Numero, NumeroMercadoria),
     FOREIGN
         KEY(CodigoFornecedor)
         REFERENCES Fornecedor(Codigo)
