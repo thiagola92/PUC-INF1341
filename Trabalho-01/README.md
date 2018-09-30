@@ -291,6 +291,11 @@ Foi adicionada a seguinte linha na tabela Mercadorias
 # 6
 
 ```SQL
+ALTER TABLE ItensComprados
+    ADD QuantidadeMaxEstoque INTEGER;
+```
+
+```SQL
 CREATE OR REPLACE TRIGGER LimiteEstoque
     BEFORE
         INSERT
