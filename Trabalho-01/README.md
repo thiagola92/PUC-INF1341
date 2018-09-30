@@ -275,7 +275,7 @@ BEGIN
         AND Numero = Ndc;
         
     IF(:NEW.ValorUnitario < PUC) THEN
-        raise_application_error(-20001, 'Vendendo por menos que o quanto comprou');
+        raise_application_error(-20001, 'Vendendo por menos do que comprou');
     END IF;
 END;
 ```
