@@ -387,3 +387,24 @@ SELECT *
     )
     WHERE ROWNUM <= 2;
 ```
+
+## Consulta dos N maiores clientes
+
+```SQL
+SELECT ROWNUM, Nome, Gasto
+    FROM (
+    SELECT Nome, Gasto
+        FROM (
+        SELECT CodigoCliente, Gasto
+            FROM (
+            SELECT Numero AS N, SUM(Quantidade * ValorUnitario) AS Gasto
+                FROM ItensNota
+                GROUP BY Numero
+            ), NotasVenda
+            WHERE N = Numero
+        ), Cliente
+        WHERE CodigoCliente = Codigo
+        ORDER BY Gasto DESC
+    )
+    WHERE ROWNUM <= 3;
+```
