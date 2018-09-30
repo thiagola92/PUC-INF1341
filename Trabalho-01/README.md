@@ -407,3 +407,9 @@ SELECT ROWNUM, Nome, Gasto
     )
     WHERE ROWNUM <= 3;
 ```
+
+## Consulta dos N maiores fornecedores
+
+```SQL
+
+```
