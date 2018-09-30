@@ -40,9 +40,7 @@ CREATE TABLE Mercadorias(
     QuantidadeEstoque       INTEGER,
     
     PRIMARY
-        KEY(NumeroMercadoria),
-    CONSTRAINT checkQuantidadeEstoque
-        CHECK (QuantidadeEstoque > 0)
+        KEY(NumeroMercadoria)
 );
 ```
 
@@ -284,8 +282,9 @@ END;
 
 Foi adicionada a seguinte linha na tabela Mercadorias
 ```SQL
-    CONSTRAINT checkQuantidadeEstoque
-        CHECK (QuantidadeEstoque > 0)
+ALTER TABLE Mercadorias
+    ADD CONSTRAINT checkQuantidadeEstoque
+        CHECK(QuantidadeEstoque > 0);
 ```
 
 # 6
