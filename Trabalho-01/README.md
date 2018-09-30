@@ -253,22 +253,26 @@ CREATE OR REPLACE TRIGGER VendaProduto
         ON ItensNota
         FOR EACH ROW
 DECLARE
-    -- Preço Ultima Compra
-    PUC     NUMBER(10,2);
-    
-    -- Maior Data (ultima compra)
-    MD      DATE;
+    MD      DATE;           -- Maior Data (ultima compra)
+    NdC     INTEGER;        -- Numero da Compra
+    PUC     NUMBER(10,2);   -- Preço Ultima Compra
 BEGIN
     SELECT MAX(DataCompra)
         INTO MD
         FROM NotaFiscal
         WHERE NumeroMercadoria = :NEW.NumeroMercadoria;
         
-    SELECT ValorUnitario
-        INTO PUC
+    SELECT NumeroDaCompra
+        INTO Ndc
         FROM NotaFiscal
         WHERE NumeroMercadoria = :NEW.NumeroMercadoria
         AND DataCompra = MD;
+        
+    SELECT ValorUnitario
+        INTO PUC
+        FROM ItensComprados
+        WHERE NumeroMercadoria = :NEW.NumeroMercadoria
+        AND Numero = Ndc;
         
     IF(:NEW.ValorUnitario < PUC) THEN
         raise_application_error(-20001, 'Vendendo por menos que o quanto comprou');
