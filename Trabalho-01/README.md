@@ -330,36 +330,60 @@ END;
 
 Lógica
 ```SQL
--- Botando em ordem e deixando apenas as colunas importantes
+-- Deixando apenas as colunas que importam
 SELECT NumeroMercadoria, Quantidade
-    FROM ItensNota
-    ORDER BY Quantidade DESC;
+    FROM ItensNota;
     
--- Exibindo apenas N linhas
-SELECT ROWNUM, NumeroMercadoria, Quantidade
-    FROM ItensNota
-    WHERE ROWNUM <= 2;
-    
--- Agrupamento por uma coluna somando as quantidades
+-- Fazendo o somatório das linhas
 SELECT NumeroMercadoria, SUM(Quantidade)
     FROM (
     SELECT NumeroMercadoria, Quantidade
         FROM ItensNota
-        ORDER BY Quantidade DESC
     )
     GROUP BY NumeroMercadoria;
+    
+-- Renomeando para poder organizar por aquela coluna
+SELECT NumeroMercadoria, SUM(Quantidade) AS Quantidade
+    FROM (
+    SELECT NumeroMercadoria, Quantidade
+        FROM ItensNota
+    )
+    GROUP BY NumeroMercadoria
+    ORDER BY Quantidade DESC;
+    
+-- Renomeando para poder organizar por aquela coluna
+SELECT NumeroMercadoria, SUM(Quantidade) AS Quantidade
+    FROM (
+    SELECT NumeroMercadoria, Quantidade
+        FROM ItensNota
+    )
+    GROUP BY NumeroMercadoria
+    ORDER BY Quantidade DESC; 
+    
+-- Limitando a quantidade de linhas que aparece
+SELECT *
+    FROM (
+    SELECT NumeroMercadoria, SUM(Quantidade) AS Quantidade
+        FROM (
+        SELECT NumeroMercadoria, Quantidade
+            FROM ItensNota
+        )
+        GROUP BY NumeroMercadoria
+        ORDER BY Quantidade DESC
+    )
+    WHERE ROWNUM <= 2;
 ```
 
 ```SQL
 SELECT *
     FROM (
-    SELECT NumeroMercadoria, SUM(Quantidade)
+    SELECT NumeroMercadoria, SUM(Quantidade) AS Quantidade
         FROM (
         SELECT NumeroMercadoria, Quantidade
             FROM ItensNota
-            ORDER BY Quantidade DESC
         )
         GROUP BY NumeroMercadoria
+        ORDER BY Quantidade DESC
     )
     WHERE ROWNUM <= 2;
 ```
