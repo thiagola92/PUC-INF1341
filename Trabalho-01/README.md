@@ -325,3 +325,15 @@ END;
 # 8
 
 # 9
+
+## Consulta dos N produtos mais vendidos
+
+```SQL
+SELECT NumeroMercadoria, SUM(Quantidade)
+    FROM (
+    SELECT NumeroMercadoria, Quantidade
+        FROM ItensNota
+        ORDER BY Quantidade DESC
+    )
+    GROUP BY NumeroMercadoria;
+```
