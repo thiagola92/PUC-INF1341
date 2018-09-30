@@ -290,7 +290,7 @@ ALTER TABLE Mercadorias
 # 6
 
 ```SQL
-ALTER TABLE ItensComprados
+ALTER TABLE Mercadorias
     ADD QuantidadeMaxEstoque INTEGER;
 ```
 
@@ -301,14 +301,20 @@ CREATE OR REPLACE TRIGGER LimiteEstoque
         ON ItensComprados
         FOR EACH ROW
 DECLARE
+    QE      INTEGER;    -- Quantidade Estoque
     QME     INTEGER;    -- Quantidade Máximo Estoque
 BEGIN
+    SELECT QuantidadeEstoque
+        INTO QE
+        FROM Mercadorias
+        WHERE NumeroMercadoria = :NEW.NumeroMercadoria;
+
     SELECT QuantidadeMaxEstoque
         INTO QME
         FROM Mercadorias
         WHERE NumeroMercadoria = :NEW.NumeroMercadoria;
     
-    IF(:NEW.QuantidadeEstoque > QME) THEN
+    IF(:NEW.Quantidade + QE > QME) THEN
         raise_application_error(-20002, 'Ultrapassou o limite do estoque');
     END IF;
 END;
