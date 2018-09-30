@@ -328,7 +328,19 @@ END;
 
 ## Consulta dos N produtos mais vendidos
 
+Lógica
 ```SQL
+-- Botando em ordem e deixando apenas as colunas importantes
+SELECT NumeroMercadoria, Quantidade
+    FROM ItensNota
+    ORDER BY Quantidade DESC;
+    
+-- Exibindo apenas N linhas
+SELECT ROWNUM, NumeroMercadoria, Quantidade
+    FROM ItensNota
+    WHERE ROWNUM <= 2;
+    
+-- Agrupamento por uma coluna somando as quantidades
 SELECT NumeroMercadoria, SUM(Quantidade)
     FROM (
     SELECT NumeroMercadoria, Quantidade
@@ -336,4 +348,18 @@ SELECT NumeroMercadoria, SUM(Quantidade)
         ORDER BY Quantidade DESC
     )
     GROUP BY NumeroMercadoria;
+```
+
+```SQL
+SELECT *
+    FROM (
+    SELECT NumeroMercadoria, SUM(Quantidade)
+        FROM (
+        SELECT NumeroMercadoria, Quantidade
+            FROM ItensNota
+            ORDER BY Quantidade DESC
+        )
+        GROUP BY NumeroMercadoria
+    )
+    WHERE ROWNUM <= 2;
 ```
