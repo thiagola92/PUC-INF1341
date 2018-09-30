@@ -290,6 +290,26 @@ Foi adicionada a seguinte linha na tabela Mercadorias
 
 # 6
 
+```SQL
+CREATE OR REPLACE TRIGGER LimiteEstoque
+    BEFORE
+        INSERT
+        ON ItensComprados
+        FOR EACH ROW
+DECLARE
+    QME     INTEGER;    -- Quantidade Máximo Estoque
+BEGIN
+    SELECT QuantidadeMaxEstoque
+        INTO QME
+        FROM Mercadorias
+        WHERE NumeroMercadoria = :NEW.NumeroMercadoria;
+    
+    IF(:NEW.QuantidadeEstoque > QME) THEN
+        raise_application_error(-20002, 'Ultrapassou o limite do estoque');
+    END IF;
+END;
+```
+
 # 7
 
 # 8
