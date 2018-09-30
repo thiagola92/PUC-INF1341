@@ -247,7 +247,7 @@ END;
 # 4
 
 ```SQL
-CREATE OR REPLACE TRIGGER VendaProduto
+CREATE OR REPLACE TRIGGER ValorMinDeVenda
     BEFORE
         INSERT
         ON ItensNota
