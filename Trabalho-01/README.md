@@ -411,5 +411,21 @@ SELECT ROWNUM, Nome, Gasto
 ## Consulta dos N maiores fornecedores
 
 ```SQL
-
+SELECT ROWNUM, Nome, Gasto
+    FROM (
+    SELECT Nome, Gasto
+        FROM (
+        SELECT CodigoFornecedor, SUM(Gasto) AS Gasto
+            FROM (
+            SELECT Numero AS N, SUM(ValorTotal) AS Gasto
+                FROM ItensComprados
+                GROUP BY Numero
+            ), NotaFiscal
+            WHERE N = NumeroDaCompra
+            GROUP BY CodigoFornecedor
+        ), Fornecedor
+        WHERE CodigoFornecedor = Codigo
+        ORDER BY Gasto DESC
+    )
+    WHERE ROWNUM <= 3;
 ```
