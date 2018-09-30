@@ -280,7 +280,6 @@ END;
 
 # 5
 
-Foi adicionada a seguinte linha na tabela Mercadorias
 ```SQL
 ALTER TABLE Mercadorias
     ADD CONSTRAINT checkQuantidadeEstoque
