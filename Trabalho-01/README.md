@@ -183,48 +183,21 @@ CREATE TABLE Fornecedor(
 # 2
 
 ```SQL
-CREATE OR REPLACE FUNCTION HistoricoDeEmpresa(Empresa VARCHAR)
-RETURN
-    INTEGER -- TODO
-AS
-    -- Codigo Cliente/Fornecedor
-    CC      INTEGER;
-    CF      INTEGER;
-    
-    -- Numero da Compra/Venda
-    NdC     INTEGER;
-    NdV     INTEGER;
-BEGIN
-    SELECT Codigo
-        INTO CC
-        FROM Cliente
-        WHERE Empresa = Nome;
-        
-    SELECT Numero
-        INTO NdV
-        FROM NotasVenda
-        WHERE CodigoCliente = CC;
-    
-    SELECT Codigo
-        INTO CF
-        FROM Fornecedor
-        WHERE Empresa = Nome;
-        
-    SELECT NumeroDaCompra
-        INTO NdC
-        FROM NotaFiscal
-        WHERE CodigoFornecedor = CF;
-        
-    SELECT *
-        FROM ItensComprados
-        WHERE Numero = NdC;
-    
-    SELECT *
-        FROM ItensNota
-        WHERE Numero = NdV;
-        
-    RETURN 1; -- TODO
-END;
+SELECT NumeroMercadoria, Descricao
+    FROM (
+    SELECT NumeroMercadoria AS MN
+        FROM (
+        SELECT Numero AS N
+            FROM (
+            SELECT Codigo
+                FROM Cliente
+                WHERE Cliente.Nome = 'Thiago'
+            ), NotasVenda
+            WHERE CodigoCliente = Codigo
+        ), ItensNota
+        WHERE Numero = N
+    ), Mercadorias
+    WHERE NumeroMercadoria = MN;
 ```
 
 # 3
