@@ -197,6 +197,18 @@ SELECT NumeroMercadoria, Descricao
         ), ItensNota
         WHERE Numero = N
     ), Mercadorias
+    WHERE NumeroMercadoria = MN
+    UNION ALL
+SELECT NumeroMercadoria, Descricao
+    FROM (
+    SELECT NumeroMercadoria AS MN
+        FROM (
+        SELECT Codigo
+            FROM Fornecedor
+            WHERE Nome = 'Thiago'
+        ), NotaFiscal
+        WHERE CodigoFornecedor = Codigo
+    ), Mercadorias
     WHERE NumeroMercadoria = MN;
 ```
 
