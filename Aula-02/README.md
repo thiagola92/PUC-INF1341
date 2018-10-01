@@ -1,12 +1,4 @@
-# Aula 02
-Ainda está difícil escrever sobre a matéria já que estamos indo para a 3ª semana e ele não botou os slides no site.  
-Os assuntos dessa aula foram:  
-* Paralelismo
-* Cache
-* Risc x Cisc
-* Raid
-
-# CPU
+# CPU & Cache
 (**Central Processing Unit**)  
 * Uma CPU pode ter vários **cores**  
 * Um core tem o **Cache L1** e o **Cache L2**  
@@ -21,8 +13,17 @@ Cache L1 > Cache L2 > Cache L3
 
 CPU Wikipedia: https://en.wikipedia.org/wiki/Central_processing_unit  
 
-# Fora da CPU
+## Fora da CPU
 Fora da CPU temos nossos clássicos: **RAM** e **HD**  
 ![Cpu, RAM and HD](/Aula-02/cpu_ram_hd.png)  
+
+# Risc x Cisc
+
+Reduced Instruction Set Computer: https://en.wikipedia.org/wiki/Reduced_instruction_set_computer  
+Complex Instruction Set Computer: https://en.wikipedia.org/wiki/Complex_instruction_set_computer  
+
+# Raid
+
+RAID: https://en.wikipedia.org/wiki/RAID  
 
 *Vou escrever melhor dessa aula quando tiver os slides

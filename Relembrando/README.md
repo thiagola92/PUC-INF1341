@@ -177,7 +177,7 @@ CREATE LOCAL TEMPORARY TABLE temp_cd (
 
 ```SQL
 DECLARE
-  nome    VARCHAR(60)
+  nome    VARCHAR(60);
   idade   INTEGER := 24;
 BEGIN
   nome := 'Thiago';
@@ -222,7 +222,7 @@ BEGIN
         INTO return_value
         FROM CD_de_musica
         WHERE preco_venda = preco;
-        
+
     RETURN return_value;
 END;
 ```
