@@ -507,3 +507,11 @@ SELECT ROWNUM, Nome, Gasto
     )
     WHERE ROWNUM <= 3;
 ```
+
+## Consulta a dados de um fornecedor/cliente X
+
+## Consulta a estoque e preço de um produto
+
+## Consulta a dados de um pedido X
+
+## Consulta a dados de uma Nota Fiscal X
