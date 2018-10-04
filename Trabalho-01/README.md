@@ -558,7 +558,7 @@ END;
 
 Para testar basta usar
 
-````SQL
+```SQL
 BEGIN
     DBMS_OUTPUT.PUT_LINE(informacaoCliente(1));
     DBMS_OUTPUT.PUT_LINE(informacaoFornecedor(1));
