@@ -652,3 +652,51 @@ END;
 ```
 
 ## Consulta a dados de uma Nota Fiscal X
+
+```SQL
+CREATE OR REPLACE FUNCTION consultaNotaFiscal(pedido INTEGER)
+RETURN VARCHAR
+AS
+    Nome                VARCHAR(255);
+    Descricao           VARCHAR(255);
+    Quantidade          INTEGER;
+    ValorUnitario       NUMBER(10,2);
+    ValorTotal          NUMBER;
+    DataCompra          DATE;
+BEGIN
+
+    SELECT DataCompra
+        INTO DataCompra
+        FROM NotaFiscal
+        WHERE pedido = Numero;
+        
+    SELECT Quantidade, ValorUnitario, ValorTotal
+        INTO Quantidade, ValorUnitario, ValorTotal
+        FROM (
+        SELECT NumeroDaCompra AS N
+            FROM NotaFiscal
+            WHERE pedido = Numero
+        ), ItensComprados
+        WHERE Numero = N;
+    
+    SELECT Nome
+        INTO Nome
+        FROM (
+        SELECT CodigoFornecedor AS CF
+            FROM NotaFiscal
+            WHERE pedido = Numero
+        ), Fornecedor
+        WHERE Fornecedor.Codigo = CF;
+        
+    SELECT Descricao
+        INTO Descricao
+        FROM (
+        SELECT NumeroMercadoria AS NM
+            FROM NotaFiscal
+            WHERE pedido = Numero
+        ), Mercadorias
+        WHERE Mercadorias.NumeroMercadoria = NM;
+        
+    RETURN Descricao || ' ' || Quantidade || '' || ValorUnitario || '' || ValorTotal || '' || DataCompra || '' || Nome;
+END;
+```
