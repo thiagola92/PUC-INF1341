@@ -367,6 +367,20 @@ SELECT (SalarioBase + Comissao*0.05) AS Salario, Nome
 
 # 9
 
+## Cadastro de produtos com todas as suas informações
+
+```SQL
+CREATE OR REPLACE PROCEDURE inserirMercadoria(Numero INTEGER, Des VARCHAR, Qtd INTEGER, QtdMax INTEGER)
+AS
+BEGIN
+    INSERT
+        INTO Mercadorias
+        (NumeroMercadoria, Descricao, QuantidadeEstoque, QuantidadeMaxEstoque)
+        VALUES
+        (Numero, Des, Qtd, QtdMax);
+END;
+```
+
 ## Consulta dos N produtos mais vendidos
 
 Lógica
