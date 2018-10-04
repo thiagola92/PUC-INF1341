@@ -510,6 +510,52 @@ SELECT ROWNUM, Nome, Gasto
 
 ## Consulta a dados de um fornecedor/cliente X
 
+```SQL
+CREATE OR REPLACE FUNCTION informacaoCliente(Cod INTEGER)
+    RETURN VARCHAR
+AS
+    Nome                VARCHAR(255);
+    Telefone            VARCHAR(255);
+    Logradouro          VARCHAR(255);
+    Numero              INTEGER;
+    Complemento         VARCHAR(255);
+    Cidade              VARCHAR(255);
+    Estado              VARCHAR(2);
+    NumeroContribuinte  INTEGER;
+BEGIN
+
+    SELECT Nome, Telefone, Logradouro, Numero, Complemento, Cidade, Estado, NumeroContribuinte
+        INTO Nome, Telefone, Logradouro, Numero, Complemento, Cidade, Estado, NumeroContribuinte
+        FROM Cliente
+        WHERE Codigo = Cod;
+    
+    RETURN Nome || Telefone ||Logradouro || Numero || Complemento || Cidade || Estado || NumeroContribuinte;
+END;
+```
+
+```SQL
+CREATE OR REPLACE FUNCTION informacaoFornecedor(Cod INTEGER)
+    RETURN VARCHAR
+AS
+    Nome                VARCHAR(255);
+    Telefone            VARCHAR(255);
+    Logradouro          VARCHAR(255);
+    Numero              INTEGER;
+    Complemento         VARCHAR(255);
+    Cidade              VARCHAR(255);
+    Estado              VARCHAR(2);
+    NumeroContribuinte  INTEGER;
+BEGIN
+
+    SELECT Nome, Telefone, Logradouro, Numero, Complemento, Cidade, Estado, NumeroContribuinte
+        INTO Nome, Telefone, Logradouro, Numero, Complemento, Cidade, Estado, NumeroContribuinte
+        FROM Fornecedor
+        WHERE Codigo = Cod;
+    
+    RETURN Nome || Telefone ||Logradouro || Numero || Complemento || Cidade || Estado || NumeroContribuinte;
+END;
+```
+
 ## Consulta a estoque e preço de um produto
 
 ## Consulta a dados de um pedido X
