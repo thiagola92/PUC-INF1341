@@ -567,6 +567,31 @@ END;
 
 ## Consulta a estoque e preço de um produto
 
+````SQL
+CREATE OR REPLACE FUNCTION consultaEstoquePreco(NM INTEGER)
+RETURN VARCHAR
+AS
+    QT  INTEGER;
+    VU  INTEGER;
+BEGIN
+    SELECT QuantidadeEstoque
+        INTO QT
+        FROM Mercadorias
+        WHERE NumeroMercadoria = NM;
+        
+    SELECT ValorUnitario
+        INTO VU
+        FROM (
+        SELECT MAX(Numero) AS N
+            FROM ItensNota
+            WHERE NumeroMercadoria = NM
+        ), ItensNota
+        WHERE Numero = N;
+        
+    RETURN QT || ' ' || VU;
+END;
+```
+
 ## Consulta a dados de um pedido X
 
 ## Consulta a dados de uma Nota Fiscal X
