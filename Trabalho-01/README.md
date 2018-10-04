@@ -603,4 +603,6 @@ END;
 
 ## Consulta a dados de um pedido X
 
+
+
 ## Consulta a dados de uma Nota Fiscal X
