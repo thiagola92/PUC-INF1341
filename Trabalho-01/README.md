@@ -614,22 +614,38 @@ AS
     ValorTotal          NUMBER;
     DataCompra          DATE;
 BEGIN
-    SELECT Descricao, Quantidade, ValorUnitario, ValorTotal, DataCompra, Nome
-        INTO Descricao, Quantidade, ValorUnitario, ValorTotal, DataCompra, Nome
+
+    SELECT DataCompra
+        INTO DataCompra
+        FROM NotaFiscal
+        WHERE pedido = Numero;
+        
+    SELECT Quantidade, ValorUnitario, ValorTotal
+        INTO Quantidade, ValorUnitario, ValorTotal
         FROM (
-        SELECT Quantidade, ValorUnitario, ValorTotal, DataCompra, Nome, NumeroMercadoria AS NM
-            FROM (
-            SELECT Quantidade, ValorUnitario, ValorTotal, DataCompra, NumeroMercadoria, Numero AS N
-                FROM (
-                SELECT DataCompra, Numero AS N
-                    FROM NotaFiscal
-                    WHERE pedido = Numero
-                ), ItensComprados
-                WHERE ItensComprados.Numero = N
-            ), Fornecedor
-            WHERE Fornecedor.Numero = N
+        SELECT NumeroDaCompra AS N
+            FROM NotaFiscal
+            WHERE pedido = Numero
+        ), ItensComprados
+        WHERE Numero = N;
+    
+    SELECT Nome
+        INTO Nome
+        FROM (
+        SELECT CodigoFornecedor AS CF
+            FROM NotaFiscal
+            WHERE pedido = Numero
+        ), Fornecedor
+        WHERE Fornecedor.Codigo = CF;
+        
+    SELECT Descricao
+        INTO Descricao
+        FROM (
+        SELECT NumeroMercadoria AS NM
+            FROM NotaFiscal
+            WHERE pedido = Numero
         ), Mercadorias
-        WHERE Mercadorias.Descricao = NM;
+        WHERE Mercadorias.NumeroMercadoria = NM;
         
     RETURN Descricao || ' ' || Quantidade || '' || ValorUnitario || '' || ValorTotal || '' || DataCompra || '' || Nome;
 END;
