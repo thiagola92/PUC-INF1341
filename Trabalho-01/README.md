@@ -367,17 +367,26 @@ SELECT (SalarioBase + Comissao*0.05) AS Salario, Nome
 
 # 9
 
-## 
+## Consulta de aquisições em atraso de um determinado fornecedor
+
+Precisamos de uma data de previsão então foi adicionado a tabela.  
+
+```SQL
+ALTER TABLE NotaFiscal
+    ADD DataPrevisao DATE;
+```
+
+Foi feito uma query para justamente exibir todos os items que estão atrasados.
 
 ```SQL
 SELECT NotaFiscal.Numero, DataCompra
     FROM (
     SELECT Codigo
         FROM Fornecedor
-        WHERE Codigo = 1
+        WHERE Codigo = 1    -- Trocar pelo id do fornecedor
     ), NotaFiscal
     WHERE CodigoFornecedor = Codigo
-    AND CURRENT_DATE > DataCompra + 0;  -- Troque o 0 pelo tempo que o fornecedor teria para entregar
+    AND CURRENT_DATE > DataPrevisao;
 ```
 
 ## Cadastro de produtos com todas as suas informações
