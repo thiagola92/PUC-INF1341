@@ -556,6 +556,15 @@ BEGIN
 END;
 ```
 
+Para testar basta usar
+
+````SQL
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(informacaoCliente(1));
+    DBMS_OUTPUT.PUT_LINE(informacaoFornecedor(1));
+END;
+```
+
 ## Consulta a estoque e preço de um produto
 
 ## Consulta a dados de um pedido X
