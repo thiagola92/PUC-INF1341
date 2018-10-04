@@ -287,7 +287,7 @@ Foi criada uma constraint para impedir que valores sejam menores que 0.
 ```SQL
 ALTER TABLE Mercadorias
     ADD CONSTRAINT checkQuantidadeEstoque
-        CHECK(QuantidadeEstoque > 0);
+        CHECK(QuantidadeEstoque >= 0);
 ```
 
 # 6
