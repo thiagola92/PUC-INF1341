@@ -529,7 +529,7 @@ BEGIN
         FROM Cliente
         WHERE Codigo = Cod;
     
-    RETURN Nome || Telefone ||Logradouro || Numero || Complemento || Cidade || Estado || NumeroContribuinte;
+    RETURN Nome || ' ' || Telefone || ' ' || Logradouro || ' ' || Numero || ' ' || Complemento || ' ' || Cidade || ' ' || Estado || ' ' || NumeroContribuinte;
 END;
 ```
 
@@ -552,7 +552,7 @@ BEGIN
         FROM Fornecedor
         WHERE Codigo = Cod;
     
-    RETURN Nome || Telefone ||Logradouro || Numero || Complemento || Cidade || Estado || NumeroContribuinte;
+    RETURN Nome || ' ' || Telefone || ' ' || Logradouro || ' ' || Numero || ' ' || Complemento || ' ' || Cidade || ' ' || Estado || ' ' || NumeroContribuinte;
 END;
 ```
 
