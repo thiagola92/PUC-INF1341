@@ -186,6 +186,11 @@ CREATE TABLE Fornecedor(
 
 # 2
 
+Como a idéia era identificar todos os produtos comprados ou fornecidos por um cliente/forncedor, eu queria exibir no final uma tabela com os produtos comprados pelo cliente/fornecedor.  
+Utilizando procedure/functions não consigui exibir na tela o resultado da query.  
+
+Essa query é a união de duas queries, uma que vai pegar os produtos comprados do ponto de vista de cliente e outra que vai olhar os produtos comprados do ponto de vista de fornecedor.  
+
 ```SQL
 SELECT NumeroMercadoria, Descricao
     FROM (
@@ -195,7 +200,7 @@ SELECT NumeroMercadoria, Descricao
             FROM (
             SELECT Codigo
                 FROM Cliente
-                WHERE Cliente.Nome = 'Thiago'
+                WHERE Cliente.Nome = 'Thiago' -- Nome do cliente/fornecedor
             ), NotasVenda
             WHERE CodigoCliente = Codigo
         ), ItensNota
@@ -209,7 +214,7 @@ SELECT NumeroMercadoria, Descricao
         FROM (
         SELECT Codigo
             FROM Fornecedor
-            WHERE Nome = 'Thiago'
+            WHERE Nome = 'Thiago' -- Nome do cliente/fornecedor
         ), NotaFiscal
         WHERE CodigoFornecedor = Codigo
     ), Mercadorias
@@ -217,6 +222,8 @@ SELECT NumeroMercadoria, Descricao
 ```
 
 # 3
+
+Foi criado uma trigger que levanta um error quando o estoque está abaixo de 3.  
 
 ```SQL
 CREATE OR REPLACE TRIGGER AlteracaoEstoque
@@ -232,6 +239,12 @@ END;
 ```
 
 # 4
+
+Essa trigger faz:
+Uma query para descobrir a compra mais recente feita com aquela mercadoria.  
+Outra query para descobrir o numero do produto comprado nessa compra mais recente.  
+Ultima query para pegar o valor unitário desse produto.  
+
 
 ```SQL
 CREATE OR REPLACE TRIGGER ValorMinDeVenda
@@ -269,6 +282,8 @@ END;
 
 # 5
 
+Foi criada uma constraint para impedir que valores sejam menores que 0.  
+
 ```SQL
 ALTER TABLE Mercadorias
     ADD CONSTRAINT checkQuantidadeEstoque
@@ -277,10 +292,15 @@ ALTER TABLE Mercadorias
 
 # 6
 
+Eu não queria ter que alterear as tabelas originais mas nesse caso eu precisava saber a quantidade máxima que um estoque conseguia armazenar.   
+
 ```SQL
 ALTER TABLE Mercadorias
     ADD QuantidadeMaxEstoque INTEGER;
 ```
+
+Faz duas queries, uma para obter a quantidade de itens no estoque agora e outra para descobrir o máximo.  
+Gera um error case ultrapasse.  
 
 ```SQL
 CREATE OR REPLACE TRIGGER LimiteEstoque
@@ -311,6 +331,14 @@ END;
 # 7
 
 # 8
+
+Da query mais externa para a mais interna:  
+Seleciona apenas os funcionarios que estão na tabela funcionario (já que vendas antigas podem ter funcionarios demitidos queremos apenas os que estão trabalhando atualmente).  
+Query para obter o cargo de cada funcionario.  
+Query para obter o salario base de cada funcionário.  
+Query para descobrir quanto dinheiro foi feito com a venda de um certo item (valor unitário * quantidade).  
+Query para somar o total de todas essas vendas de items.  
+Query para descobrir o salário final (salário + comissão).  
 
 ```SQL
 SELECT (SalarioBase + Comissao*0.05) AS Salario, Nome
