@@ -603,6 +603,36 @@ END;
 
 ## Consulta a dados de um pedido X
 
-
+```SQL
+CREATE OR REPLACE FUNCTION consultaPedido(pedido INTEGER)
+RETURN VARCHAR
+AS
+    Nome                VARCHAR(255);
+    Descricao           VARCHAR(255);
+    Quantidade          INTEGER;
+    ValorUnitario       NUMBER(10,2);
+    ValorTotal          NUMBER;
+    DataCompra          DATE;
+BEGIN
+    SELECT Descricao, Quantidade, ValorUnitario, ValorTotal, DataCompra, Nome
+        INTO Descricao, Quantidade, ValorUnitario, ValorTotal, DataCompra, Nome
+        FROM (
+        SELECT Quantidade, ValorUnitario, ValorTotal, DataCompra, Nome, NumeroMercadoria AS NM
+            FROM (
+            SELECT Quantidade, ValorUnitario, ValorTotal, DataCompra, NumeroMercadoria, Numero AS N
+                FROM (
+                SELECT DataCompra, Numero AS N
+                    FROM NotaFiscal
+                    WHERE pedido = Numero
+                ), ItensComprados
+                WHERE ItensComprados.Numero = N
+            ), Fornecedor
+            WHERE Fornecedor.Numero = N
+        ), Mercadorias
+        WHERE Mercadorias.Descricao = NM;
+        
+    RETURN Descricao || ' ' || Quantidade || '' || ValorUnitario || '' || ValorTotal || '' || DataCompra || '' || Nome;
+END;
+```
 
 ## Consulta a dados de uma Nota Fiscal X
