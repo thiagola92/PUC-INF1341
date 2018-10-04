@@ -567,6 +567,9 @@ END;
 
 ## Consulta a estoque e preço de um produto
 
+Query para saber quantos produtos tem no estoque.  
+Query para saber por quanto foi vendido o produto da ultima vez.  
+
 ```SQL
 CREATE OR REPLACE FUNCTION consultaEstoquePreco(NM INTEGER)
 RETURN VARCHAR
@@ -589,6 +592,12 @@ BEGIN
         WHERE Numero = N;
         
     RETURN QT || ' ' || VU;
+END;
+```
+
+```SQL
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(consultaEstoquePreco(1));
 END;
 ```
 
