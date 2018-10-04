@@ -567,7 +567,7 @@ END;
 
 ## Consulta a estoque e preço de um produto
 
-````SQL
+```SQL
 CREATE OR REPLACE FUNCTION consultaEstoquePreco(NM INTEGER)
 RETURN VARCHAR
 AS
