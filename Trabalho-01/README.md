@@ -308,6 +308,31 @@ END;
 
 # 8
 
+```SQL
+SELECT (SalarioBase + Comissao*0.05) AS Salario, Nome
+    FROM (
+    SELECT SUM(ValorTotal) AS Comissao, SalarioBase, Nome
+        FROM (
+        SELECT (ValorUnitario * Quantidade) AS ValorTotal, SalarioBase, Nome
+            FROM (
+            SELECT Numero AS N, CPF, SalarioBase, Nome
+                FROM (
+                SELECT Numero, CPF, CodigoCargo, Nome 
+                    FROM (
+                    SELECT NotasVenda.Numero, CPF AS C, Nome
+                        FROM NotasVenda, Funcionario
+                        WHERE CPFVendedor = CPF
+                    ), CargosFunc
+                    WHERE C = CPF
+                ), Cargo
+                WHERE CodigoCargo = Codigo
+            ), ItensNota
+            WHERE N = Numero
+        )
+        GROUP BY (Nome, SalarioBase)
+    );
+```
+
 # 9
 
 ## Consulta dos N produtos mais vendidos
