@@ -367,6 +367,19 @@ SELECT (SalarioBase + Comissao*0.05) AS Salario, Nome
 
 # 9
 
+## 
+
+```SQL
+SELECT NotaFiscal.Numero, DataCompra
+    FROM (
+    SELECT Codigo
+        FROM Fornecedor
+        WHERE Codigo = 1
+    ), NotaFiscal
+    WHERE CodigoFornecedor = Codigo
+    AND CURRENT_DATE > DataCompra + 0;  -- Troque o 0 pelo tempo que o fornecedor teria para entregar
+```
+
 ## Cadastro de produtos com todas as suas informações
 
 ```SQL
