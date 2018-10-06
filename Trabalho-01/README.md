@@ -330,6 +330,8 @@ END;
 
 # 7
 
+Foi criado uma trigger para verificar se o cpf do vendedor existe, isso é feito apenas na hora da venda.  
+
 ```SQL
 CREATE OR REPLACE TRIGGER IntegridadeCPF
     BEFORE
