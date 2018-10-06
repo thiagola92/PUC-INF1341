@@ -330,6 +330,26 @@ END;
 
 # 7
 
+```SQL
+CREATE OR REPLACE TRIGGER IntegridadeCPF
+    BEFORE
+        INSERT
+        ON NotasVenda
+        FOR EACH ROW
+DECLARE
+    CPFtemp      VARCHAR(50);
+BEGIN
+    SELECT CPF
+        INTO CPFtemp
+        FROM Funcionario
+        WHERE CPF = :NEW.CPFVendedor;
+        
+    IF (CPFtemp IS NULL) THEN
+        raise_application_error(-20003, 'CPF não existe');
+    END IF;
+END;
+```
+
 # 8
 
 Da query mais externa para a mais interna:  
