@@ -67,7 +67,7 @@ CREATE TABLE Cliente(
 CREATE TABLE Funcionario(
     CPF                 VARCHAR(15),
     Nome                VARCHAR(255),
-    Telefone            INTEGER,
+    Telefone            VARCHAR(255),
     Logradouro          VARCHAR(255),
     Numero              INTEGER,
     Complemento         VARCHAR(255),
