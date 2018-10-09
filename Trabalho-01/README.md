@@ -290,6 +290,21 @@ ALTER TABLE Mercadorias
         CHECK(QuantidadeEstoque >= 0);
 ```
 
+Outra opção é fazer uma trigger para levantar erro quando estoque ficar abaixo de 0.
+
+```SQL
+CREATE OR REPLACE TRIGGER MinEstoque
+    BEFORE
+        INSERT
+        ON Mercadorias
+        FOR EACH ROW
+BEGIN
+    IF(:NEW.QuantidadeEstoque < 0) THEN
+        raise_application_error(-20004, 'Estoque ficando abaixo de 0');
+    END IF;
+END;
+```
+
 # 6
 
 Eu não queria ter que alterear as tabelas originais mas nesse caso eu precisava saber a quantidade máxima que um estoque conseguia armazenar.   
