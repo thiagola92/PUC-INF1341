@@ -33,7 +33,7 @@ As tarefas que o Server tinha foram diminuindo, até um pouco que ficou respons�
 Client-Server: https://en.wikipedia.org/wiki/Client%E2%80%93server_model
 
 ## SGBDD
-__S__istema de __G__erência de __B__anco de __D__ados __D__ istribuídos  
+**S**istema de **G**erência de **B**anco de **D**ados **D**istribuídos  
 
 Banco de dados distribuidos é armazenas as informações da empresa em banco de dados diferentes/separados.  
 Por exemplo, as informações que são muito acessadas por pessoas do Rio de Janeiro, deixar no Banco de Dados do Rio de Janeiro.    
