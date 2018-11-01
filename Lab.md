@@ -43,7 +43,8 @@ static void SQLSimples(OracleConnection orcl)
 ```
 
 Cria uma query
-````SQL
+
+```SQL
 SELECT *
   FROM CLIENTE
   WHERE ID = :identificador
