@@ -45,3 +45,26 @@ Agora você deve ter o Database instalado e no seu Windows Start Menu:
 Agora tudo que eu estou fazendo é seguindo o guia da para **Oracle Database Express Edition**:  
 https://docs.oracle.com/cd/E17781_01/admin.112/e18585/toc.htm  
 Siga esse guia até terminar a parte 4, isso deve dar o suficiente para poder começar a fazer algo.  
+
+# Conectando com Oracle Database utilizando C#
+
+## Instalando Visual Studio 2017
+
+## Importando Biblioteca para Oracle Database
+* Abra Visual Studio
+* Crie um Projeto
+  * **File**
+  * **New**
+  * **Project**
+  * Clique em **Visual C#**
+  * Selecione **Console Application**
+    * Escolha o nome e local que você quiser
+* Adicione **System.Data.OracleClient** a referências do projeto
+  * Dentro da área **Solution Explorer**
+    * Dentro do seu projeto
+      * Clique com botão direito em **References**
+      * Selecione **Add Reference...**
+      * Na barra de busca que está escrita "Search Assemblies" escreva **System.Data.OracleClient**
+      * Marque a checkbox na linha do **System.Data.OracleClient**
+      * Clique OK
+* Escreva **using System.Data.OracleClient** no seu código
