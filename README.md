@@ -50,7 +50,7 @@ Siga esse guia até terminar a parte 4, isso deve dar o suficiente para poder co
 
 ## Instalando Visual Studio 2017
 
-## Importando Biblioteca para Oracle Database
+## Biblioteca para Oracle Database
 * Abra Visual Studio
 * Crie um Projeto
   * **File**
@@ -68,3 +68,17 @@ Siga esse guia até terminar a parte 4, isso deve dar o suficiente para poder co
       * Marque a checkbox na linha do **System.Data.OracleClient**
       * Clique OK
 * Escreva **using System.Data.OracleClient** no seu código
+
+## x64 bits
+* Abra Visual Studio
+* Clique em **Any CPU**
+  * No lado do botão **Play** está o **Any CPU**
+* **Configuration Manager**
+* Clique em **Any CPU**
+  * Em **Active solution platform**
+* Selecione **<New...>**
+* Bote x64
+  * Em **Type or select the new plataform**
+* Clique OK
+* Clique Close
+
