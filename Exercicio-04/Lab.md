@@ -8,7 +8,7 @@
 `orcl.Open();` abre essa conexão com o banco de dados.  
 `orcl.Close();` finaliza essa conexão com o banco de dados.  
 
-```
+```C#
 OracleConnection orcl = new OracleConnection("Data Source = (DESCRIPTION = (ADDRESS_LIST = " + "(ADDRESS=(PROTOCOL=TCP)(HOST=139.82.3.27)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SID = orcl))); " + " User Id = C##1721629; Password = 1721629");
 orcl.Open();
 orcl.Close();
@@ -17,7 +17,7 @@ orcl.Close();
 ## 1
 Responsável por mandar o pedido de uma query para o banco de dados e ler a resposta dele.  
 
-```
+```C#
 static void imprimeTabela(OracleCommand oCmd)
 {
     using (OracleDataReader reader = oCmd.ExecuteReader())
@@ -42,7 +42,7 @@ static void imprimeTabela(OracleCommand oCmd)
 `OracleCommand` armazena um comando do tipo query a ser executada no banco de dados. Utilizamos isso para armazenar `SELECT * FROM CLIENTE`   
 `imprimiTabela` executa a query, obtem a resposta e exibe.  
 
-```
+```C#
 static void SQLSimples(OracleConnection orcl)
 {
     OracleCommand cmd = new OracleCommand("select * from CLIENTE", orcl);
@@ -64,7 +64,7 @@ Mas o `:identificador` está ali para ser substituido pelo paramêtro passado na
 `OracleCommand` possui o método `Add()` para justamente adicionar o paramêtro criado em `OraclaParameter`.  
 `imprimiTabela` executa a query, obtem a resposta e exibe.  
 
-```
+```C#
 static void SQLParametro(OracleConnection orcl, int id_usuario)
 {
     OracleCommand cmd2 = new OracleCommand("select * from cliente where id =:identificador", orcl);
@@ -81,7 +81,7 @@ StoreProcedured pode retornar uma resposta e precisamos armazenar essa resposta,
 Igualmente ao exercicio anterior, você precisa botar no comando oracle os paramêtros (no caso o nome do usuário procurado e onde deve armazenar a resposta da função).
 `objCmd.ExecuteNonQuery();` executa o comando, agora dentro desse objeto fica armazenado os paramêtros passados anteriormente e a resposta.  
 
-```
+```C#
 static void Funcao(OracleConnection orcl, string nome_usuario)
 {
     OracleCommand objCmd = new OracleCommand("procuraid", orcl);
@@ -107,7 +107,7 @@ static void Funcao(OracleConnection orcl, string nome_usuario)
 Funciona que nem `Funcao` mas dessa vez você não obtem um resultado de resposta.  
 E executa a query para mostrar como o resultaod realmente foi executado.  
 
-```
+```C#
 static void StoredProcedure(OracleConnection orcl, int id_usuario, string novo_nome)
 {
     OracleCommand objCmd = new OracleCommand("sp_alteranomecliente",
@@ -132,7 +132,7 @@ Demonstra um exemplo de como uma string não tratada pode alterar totalmente a i
 Originalmente seria `select * from cliente where id = 1`  
 Porém ficou alterado para `select * from cliente where id = 2 or 'a'='a'`  
 
-```
+```C#
 static void SQLInjection(OracleConnection orcl)
 {
     // String id = "1"; // Código normal
@@ -146,7 +146,7 @@ static void SQLInjection(OracleConnection orcl)
 Mostra como você pode inserir código destrutivo em um simple comando SQL.  
 Após executar esse comando, verifique como toda a tabela CLIENTE foi apagada.   
 
-```
+```C#
 static void SQLInjectionDestrutivo(OracleConnection orcl)
 {
     String id = "203)'; execute immediate 'delete from cliente where (1 = 1"; // Injection
@@ -160,7 +160,7 @@ static void SQLInjectionDestrutivo(OracleConnection orcl)
 Criando um comando `OracleCommand` mas deixando vários paramêtros para inserir.  
 Cria os paramêtros, inseri os paramêtros e executa o comando.  
 
-```
+```C#
 static void insereCliente(OracleConnection orcl, int id, string nome,
 int salario, string endereco, string sexo, string datanasc)
 {
