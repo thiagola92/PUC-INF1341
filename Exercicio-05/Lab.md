@@ -1,5 +1,5 @@
-**Nome**: Thiago Lages de Alencar  
-**Matricula**: 1721629  
+**Dupla**: Thiago Lages de Alencar e Pedro Alvarez   
+**Matricula**: 1721629 e 1210881  
 
 # 1
 Primeira maneira seria utilizando `OracleParameter` para armazenar o valor e depois inserir com o `OracleCommand.Parameters.Add()`.  
