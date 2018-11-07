@@ -44,8 +44,8 @@ string databaseInfo = "Data Source = (DESCRIPTION ="
                       + "User Id = THIAGOLA92;"
                       + "Password = 111111;";
                             
-OracleConnection oracleConnection = new OracleConnection(databaseInfo);
-oraacleConnection.Open();
+OracleConnection oracle = new OracleConnection(databaseInfo);
+oracle.Open();
 
 // ...
 
