@@ -49,8 +49,15 @@ Siga esse guia até terminar a parte 4, isso deve dar o suficiente para poder co
 # Conectando com Oracle Database utilizando C#
 
 ## Instalando Visual Studio 2017
+Talvez outros Visual Studios também funcionem mas como não testei, vou recomendar o único que utilizei.  
+* Abrir **Visual Studio Installer**
+* Caso já tenha ele instalado clique **Modify**
+* Selecione **.NET desktop development**
+  * Não sei se precisa do **Universal Windows Platform development**
+* Clique install/modify
 
 ## Biblioteca para Oracle Database
+Você precisa adicionar a biblioteca com os objetos que conectão com o banco de dados da Oracle no seu projeto.  
 * Abra Visual Studio
 * Crie um Projeto
   * **File**
@@ -70,6 +77,7 @@ Siga esse guia até terminar a parte 4, isso deve dar o suficiente para poder co
 * Escreva **using System.Data.OracleClient** no seu código
 
 ## x64 bits
+Precisa ser rodado utilizando 64bits.  
 * Abra Visual Studio
 * Clique em **Any CPU**
   * No lado do botão **Play** está o **Any CPU**
