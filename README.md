@@ -56,7 +56,7 @@ Talvez outros Visual Studios também funcionem mas como não testei, vou recomen
   * Não sei se precisa do **Universal Windows Platform development**
 * Clique install/modify
 
-## Biblioteca para Oracle Database
+## Biblioteca para Oracle Database (professor)
 Você precisa adicionar a biblioteca com os objetos que conectão com o banco de dados da Oracle no seu projeto.  
 * Abra Visual Studio
 * Crie um Projeto
@@ -76,6 +76,27 @@ Você precisa adicionar a biblioteca com os objetos que conectão com o banco de
       * Clique OK
 * Escreva **using System.Data.OracleClient** no seu código
 
+## Biblioteca para Oracle Database (stackoverflow)
+A que o professor usou parece estar obsoleta:  
+https://stackoverflow.com/questions/37727137/how-to-establish-a-oracleconnection-without-making-use-of-the-obsolete-oraclecon  
+* Abra Visual Studio
+* Crie um Projeto
+  * **File**
+  * **New**
+  * **Project**
+  * Clique em **Visual C#**
+  * Selecione **Console Application**
+    * Escolha o nome e local que você quiser
+* Adicione **Oracle.DataAccess** a referências do projeto
+  * Dentro da área **Solution Explorer**
+    * Dentro do seu projeto
+      * Clique com botão direito em **References**
+      * Selecione **Add Reference...**
+      * Na barra de busca que está escrita "Search Assemblies" escreva **Oracle.DataAccess**
+      * Marque a checkbox na linha do **Oracle.DataAccess**
+      * Clique OK
+* Escreva **using Oracle.DataAccess.Client** no seu código
+
 ## x64 bits
 Precisa ser rodado utilizando 64bits.  
 * Abra Visual Studio
@@ -89,4 +110,5 @@ Precisa ser rodado utilizando 64bits.
   * Em **Type or select the new plataform**
 * Clique OK
 * Clique Close
+
 
