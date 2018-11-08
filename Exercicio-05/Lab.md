@@ -18,7 +18,7 @@ static void SQLInjectionDestrutivo(OracleConnection orcl)
 
 Segunda maneira é verificar utilizando regex para saber se os apostrofe se fecham ou verficar se tem número impar.  
 
-# 2
+# 2a
 
 ```C#
 string sql = "CREATE TABLE cliente("
@@ -31,6 +31,20 @@ string sql = "CREATE TABLE cliente("
                   + "CONSTRAINT cliente_pk PRIMARY KEY"
                   + "(id) ENABLE"
                 + ")";
+OracleCommand command = new OracleCommand(sql, oracle);
+command.ExecuteReader();
+```
+
+# 2b
+
+```C#
+string sql = "CREATE TABLE conta("
+                + "id_cliente INTEGER NOT NULL,"
+                + "agencia INTEGER ,"
+                + "numero CHAR(11) ,"
+                + "saldo DECIMAL(10,2) ,"
+                + "FOREIGN KEY (id_cliente) REFERENCES Cliente(id)"
+              + ")";
 OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
 ```
