@@ -70,8 +70,9 @@ string sql = "CREATE PROCEDURE alterar_saldo(idprocurado INTEGER, saldonovo DECI
                         + " BEGIN"
                         + "  UPDATE conta"
                         + "   SET saldo = saldonovo"
-                        + "   WHERE id_cliente = idprocurado"
-                        + " END";
+                        + "   WHERE id_cliente = idprocurado;"
+                        + " EXCEPTION"
+                        + " END;";
 OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
 ```
