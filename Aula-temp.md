@@ -89,3 +89,23 @@ while (reader.Read())
 
 reader.Close();
 ```
+
+# Prepared Statement
+Você pode criar a query uma vez e apenas substituir o parâmetro quando precisa usar ela novamente
+```C#
+// Cria query
+string sql = "SELECT * FROM CLIENTE WHERE nome = :nome";
+OracleCommand command = new OracleCommand(sql, oracle);
+
+// Substitui :nome pelo o que a variável donoDaConta tiver segurando
+string donoDaConta = "thiago";
+OracleParameter parameter = new OracleParameter("nome", donoDaConta);
+command.Parameters.Add(parameter);
+command.ExecuteReader();
+
+// Substitui :nome pelo o que a variável donoDaConta tiver segurando
+donoDaConta = "miguel";
+OracleParameter parameter = new OracleParameter("nome", donoDaConta);
+command.Parameters.Add(parameter);
+command.ExecuteReader();
+```
