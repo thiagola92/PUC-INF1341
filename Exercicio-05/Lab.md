@@ -39,12 +39,12 @@ command.ExecuteReader();
 
 ```C#
 string sql = "CREATE TABLE conta("
-                + "id_cliente INTEGER NOT NULL,"
-                + "agencia INTEGER ,"
-                + "numero CHAR(11) ,"
-                + "saldo DECIMAL(10,2) ,"
-                + "FOREIGN KEY (id_cliente) REFERENCES Cliente(id)"
-              + ")";
+                  + "id_cliente INTEGER NOT NULL,"
+                  + "agencia INTEGER ,"
+                  + "numero CHAR(11) ,"
+                  + "saldo DECIMAL(10,2) ,"
+                  + "PRIMARY KEY (id_cliente)"
+                + ")";
 OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
 ```
