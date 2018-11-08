@@ -51,3 +51,25 @@ oracle.Open();
 
 oracleConnection.Close();
 ```
+
+# Query
+```C#
+string sql = "SELECT * FROM CLIENTE";
+OracleCommand command = new OracleCommand(sql, oracle);
+OracleDataReader reader = command.ExecuteReader();
+
+// Exibir os nomes das colunas
+for (int i = 0; i < reader.FieldCount; i++)
+    Console.Write(reader.GetName(i).ToString() + "\t");
+Console.WriteLine();
+
+// Exibir as informações das colunas
+while (reader.Read())
+{
+    for (int i = 0; i < reader.FieldCount; i++)
+        Console.Write(reader.GetValue(i).ToString() + "\t");
+    Console.WriteLine();
+}
+
+reader.Close();
+```
