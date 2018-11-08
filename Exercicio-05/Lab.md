@@ -48,3 +48,16 @@ string sql = "CREATE TABLE conta("
 OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
 ```
+
+# 2c
+
+```C#
+string sql = "CREATE TABLE cli_conta("
+                  + "id_cliente INTEGER NOT NULL,"
+                  + "id INTEGER NOT NULL,"
+                  + "FOREIGN KEY (id_cliente) REFERENCES conta(id_cliente),"
+                  + "FOREIGN KEY (id) REFERENCES cliente(id)"
+                + ")";
+OracleCommand command = new OracleCommand(sql, oracle);
+command.ExecuteReader();
+```
