@@ -91,6 +91,33 @@ OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
 ```
 
+# 2e
+
+```C#
+string sql = "INSERT INTO cliente(id, nome, salario, endereco, sexo, datanasc) VALUES(:id, :nome, :salario, :endereco, :sexo, TO_DATE(:data, 'DD/MM/YYYY'))";
+OracleCommand command = new OracleCommand(sql, oracle);
+
+OracleParameter id = new OracleParameter("id", 6);
+command.Parameters.Add(id);
+
+OracleParameter nome = new OracleParameter("nome", "ARI");
+command.Parameters.Add(nome);
+
+OracleParameter salario = new OracleParameter("salario", 1000);
+command.Parameters.Add(salario);
+
+OracleParameter endereco = new OracleParameter("endereco", "RUA A N. 1");
+command.Parameters.Add(endereco);
+
+OracleParameter sexo = new OracleParameter("sexo", "M");
+command.Parameters.Add(sexo);
+
+OracleParameter data = new OracleParameter("data", "01/01/2001");
+command.Parameters.Add(data);
+
+command.ExecuteReader();
+```
+
 # 2f
 
 ```C#
