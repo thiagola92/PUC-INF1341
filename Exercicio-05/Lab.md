@@ -64,6 +64,25 @@ command.ExecuteReader();
 
 # 2d
 
+NOT NULL
+```C#
+string sql = "ALTER TABLE conta"
+              + " MODIFY id_cliente INTEGER NOT NULL";
+OracleCommand command = new OracleCommand(sql, oracle);
+command.ExecuteReader();
+
+sql = "ALTER TABLE conta"
+      + " MODIFY agencia INTEGER NOT NULL";
+command = new OracleCommand(sql, oracle);
+command.ExecuteReader();
+
+sql = "ALTER TABLE cliente"
+      + " MODIFY id INTEGER NOT NULL";
+command = new OracleCommand(sql, oracle);
+command.ExecuteReader();
+```
+
+Saldo máximo 1000  
 ```C#
 string sql = "ALTER TABLE conta"
               + " ADD CONSTRAINT saldoMaximo"
