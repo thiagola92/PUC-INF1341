@@ -94,10 +94,11 @@ command.ExecuteReader();
 # 2e
 
 ```C#
-string sql = "INSERT INTO cliente(id, nome, salario, endereco, sexo, datanasc) VALUES(:id, :nome, :salario, :endereco, :sexo, TO_DATE(:data, 'DD/MM/YYYY'))";
+string sql = "INSERT INTO cliente(id, nome, salario, endereco, sexo, datanasc) " +
+                "VALUES(:id, :nome, :salario, :endereco, :sexo, TO_DATE(:data, 'DD/MM/YYYY'))";
 OracleCommand command = new OracleCommand(sql, oracle);
 
-OracleParameter id = new OracleParameter("id", 6);
+OracleParameter id = new OracleParameter("id", 7);
 command.Parameters.Add(id);
 
 OracleParameter nome = new OracleParameter("nome", "ARI");
