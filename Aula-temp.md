@@ -104,8 +104,8 @@ command.Parameters.Add(parameter);
 command.ExecuteReader();
 
 // Substitui :nome pelo o que a variável donoDaConta tiver segurando
-donoDaConta = "miguel";
-OracleParameter parameter = new OracleParameter("nome", donoDaConta);
-command.Parameters.Add(parameter);
+string donoDaConta2 = "miguel";
+OracleParameter parameter2 = new OracleParameter("nome", donoDaConta2);
+command.Parameters.Add(parameter2);
 command.ExecuteReader();
 ```
