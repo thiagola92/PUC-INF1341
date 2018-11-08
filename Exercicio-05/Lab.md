@@ -20,3 +20,17 @@ Segunda maneira é verificar utilizando regex para saber se os apostrofe se fech
 
 # 2
 
+```C#
+string sql = "CREATE TABLE cliente("
+                  + "id INTEGER NOT NULL,"
+                  + "nome VARCHAR2(30) ,"
+                  + "salario DECIMAL(10,2) ,"
+                  + "endereco VARCHAR2(50) ,"
+                  + "sexo CHAR(1) ,"
+                  + "datanasc DATE,"
+                  + "CONSTRAINT cliente_pk PRIMARY KEY"
+                  + "(id) ENABLE"
+                + ")";
+OracleCommand command = new OracleCommand(sql, oracle);
+command.ExecuteReader();
+```
