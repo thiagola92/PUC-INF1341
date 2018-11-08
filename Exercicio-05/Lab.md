@@ -28,8 +28,7 @@ string sql = "CREATE TABLE cliente("
                   + "endereco VARCHAR2(50) ,"
                   + "sexo CHAR(1) ,"
                   + "datanasc DATE,"
-                  + "CONSTRAINT cliente_pk PRIMARY KEY"
-                  + "(id) ENABLE"
+                  + "PRIMARY KEY (id)"
                 + ")";
 OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
@@ -43,7 +42,7 @@ string sql = "CREATE TABLE conta("
                   + "agencia INTEGER ,"
                   + "numero CHAR(11) ,"
                   + "saldo DECIMAL(10,2) ,"
-                  + "PRIMARY KEY (id_cliente)"
+                  + "PRIMARY KEY (id_cliente, agencia)"
                 + ")";
 OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
@@ -53,11 +52,18 @@ command.ExecuteReader();
 
 ```C#
 string sql = "CREATE TABLE cli_conta("
-                  + "id_cliente INTEGER NOT NULL,"
-                  + "id INTEGER NOT NULL,"
-                  + "FOREIGN KEY (id_cliente) REFERENCES conta(id_cliente),"
-                  + "FOREIGN KEY (id) REFERENCES cliente(id)"
+                  + "id_tabela_cliente INTEGER,"
+                  + "id_tabela_conta INTEGER,"
+                  + "agencia_tabela_conta INTEGER,"
+                  + "FOREIGN KEY (id_tabela_cliente) REFERENCES cliente(id),"
+                  + "FOREIGN KEY (id_tabela_conta, agencia_tabela_conta) REFERENCES conta(id_cliente, agencia)"
                 + ")";
 OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
+```
+
+# 2f
+
+```C#
+OracleCommand command = new OracleCommand();
 ```
