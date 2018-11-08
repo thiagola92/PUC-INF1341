@@ -52,7 +52,23 @@ oracle.Open();
 oracleConnection.Close();
 ```
 
-# Query
+# Execute Query
+```C#
+string sql = "CREATE TABLE cliente("
+                  + "id INTEGER NOT NULL,"
+                  + "nome VARCHAR2(30) ,"
+                  + "salario DECIMAL(10,2) ,"
+                  + "endereco VARCHAR2(50) ,"
+                  + "sexo CHAR(1) ,"
+                  + "datanasc DATE,"
+                  + "CONSTRAINT cliente_pk PRIMARY KEY"
+                  + "(id) ENABLE"
+                + ")";
+OracleCommand command = new OracleCommand(sql, oracle);
+command.ExecuteReader();
+```
+
+# Print Query
 ```C#
 string sql = "SELECT * FROM CLIENTE";
 OracleCommand command = new OracleCommand(sql, oracle);
