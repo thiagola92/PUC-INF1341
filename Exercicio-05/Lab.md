@@ -62,6 +62,16 @@ OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
 ```
 
+# 2d
+
+```C#
+string sql = "ALTER TABLE conta"
+              + " ADD CONSTRAINT saldoMaximo"
+              + " CHECK ( saldo <= 1000 )";
+OracleCommand command = new OracleCommand(sql, oracle);
+command.ExecuteReader();
+```
+
 # 2f
 
 ```C#
