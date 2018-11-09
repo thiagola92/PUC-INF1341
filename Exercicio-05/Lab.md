@@ -132,3 +132,12 @@ string sql = "CREATE PROCEDURE alterar_saldo(idprocurado INTEGER, saldonovo DECI
 OracleCommand command = new OracleCommand(sql, oracle);
 command.ExecuteReader();
 ```
+
+```C#
+string sql = "alterar_saldo";
+OracleCommand command = new OracleCommand(sql, oracle);
+command.CommandType = System.Data.CommandType.StoredProcedure;
+command.Parameters.Add("idprocurado", 1);
+command.Parameters.Add("saldonovo", 150);
+command.ExecuteNonQuery();
+```
