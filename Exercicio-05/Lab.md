@@ -16,7 +16,7 @@ static void SQLInjectionDestrutivo(OracleConnection orcl)
 }
 ```
 
-Segunda maneira é verificar utilizando regex para saber se os apostrofe se fecham ou verficar se tem número impar.  
+Segunda maneira é verificar utilizando regex para descobrir o que podem ter injetado, por exemplo verificar se inseriram apostrofe e se foi o suficiente para injetar código no banco de dados.  
 
 # 2a
 
