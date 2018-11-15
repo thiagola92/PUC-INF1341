@@ -110,3 +110,15 @@ OracleParameter parameter2 = new OracleParameter("nome", donoDaConta2);
 command.Parameters.Add(parameter2);
 command.ExecuteReader();
 ```
+
+# Procedures
+Se você quer chamar um procedure já existente no Banco de Dados  
+```C#
+string procedure_name = "mudar_nome";
+OracleCommand command = new OracleCommand(procedure_name, oracle);
+command.CommandType = System.Data.CommandType.StoreProcedure;
+
+// Passa para o procedure "thiago" no paramêtro "novoNome" do procedure  
+command.Parameters.Add("novoNome", "thiago");
+command.ExecuteNonQuery();
+```
