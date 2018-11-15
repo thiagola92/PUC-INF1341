@@ -114,6 +114,7 @@ command.ExecuteReader();
 # Procedures
 Se você quer chamar um procedure já existente no Banco de Dados  
 ```C#
+// Cria o comando e bota que ele não é uma query
 string procedure_name = "mudar_nome";
 OracleCommand command = new OracleCommand(procedure_name, oracle);
 command.CommandType = System.Data.CommandType.StoreProcedure;
@@ -122,3 +123,5 @@ command.CommandType = System.Data.CommandType.StoreProcedure;
 command.Parameters.Add("novoNome", "thiago");
 command.ExecuteNonQuery();
 ```
+Como o comando não é uma query, você executa `ExecuteNonQuery()` em vez de `ExecuteReader()`  
+
