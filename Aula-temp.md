@@ -91,7 +91,8 @@ reader.Close();
 ```
 
 # Prepared Statement
-Você pode criar a query uma vez e apenas substituir o parâmetro quando precisa usar ela novamente
+Você pode criar a query uma vez e apenas substituir o parâmetro quando precisa usar ela novamente  
+(essa maneira protege contra SQL Injection)  
 ```C#
 // Cria query
 string sql = "SELECT * FROM CLIENTE WHERE nome = :nome";
