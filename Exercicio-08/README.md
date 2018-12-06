@@ -40,3 +40,19 @@ FROM (
 )
 WHERE ROWNUM < 2;
 ```
+
+## c
+````SQL
+SELECT cgc, p, e
+FROM (
+    SELECT p, e
+    FROM (
+        SELECT proprietario AS p, estado AS e
+        FROM revendedoras@carros
+        ORDER BY p
+    )
+    GROUP BY p, e
+    ORDER BY p
+), revendedoras@carros
+WHERE proprietario = p;
+```
