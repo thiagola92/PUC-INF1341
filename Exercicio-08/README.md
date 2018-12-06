@@ -1,3 +1,11 @@
+# 1
+
+```SQL
+CREATE DATABASE LINK carros 
+CONNECT TO C##USREXTERNO IDENTIFIED BY u$rext3rn0  
+USING 'BASE_EXTERNA'; 
+```
+
 # 2
 
 ## a
