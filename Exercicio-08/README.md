@@ -42,6 +42,7 @@ WHERE ROWNUM < 2;
 ```
 
 ## c
+corrigir para só pegar os q aparecem mais q uma
 ````SQL
 SELECT cgc, p, e
 FROM (
