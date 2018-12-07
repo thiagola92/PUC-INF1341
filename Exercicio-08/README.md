@@ -92,6 +92,26 @@ IN (
 
 # 4
 ````SQL
+CREATE OR REPLACE PROCEDURE duplica_val(modelo STRING, ano NUMBER)
+AS
+BEGIN
+    duplica_valor@carros(modelo, ano);
+    COMMIT;
+END;
+
+COMMIT;
+```
+
+````SQL
 CREATE SYNONYM duplica_valor
 FOR duplica_valor@carros;
+
+CREATE OR REPLACE PROCEDURE duplica_val(modelo STRING, ano NUMBER)
+AS
+BEGIN
+    duplica_valor(modelo, ano);
+    COMMIT;
+END;
+
+COMMIT;
 ```
