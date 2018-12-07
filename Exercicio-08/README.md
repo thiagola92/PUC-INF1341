@@ -42,18 +42,18 @@ WHERE ROWNUM < 2;
 ```
 
 ## c
-corrigir para só pegar os q aparecem mais q uma
 ````SQL
-SELECT cgc, p, e
+SELECT cgc, proprietario
 FROM (
-    SELECT p, e
+    SELECT *
     FROM (
-        SELECT proprietario AS p, estado AS e
+        SELECT  proprietario AS prop, COUNT(DISTINCT(estado)) AS cont
         FROM revendedoras@carros
-        ORDER BY p
+        GROUP BY proprietario
+        ORDER BY proprietario
     )
-    GROUP BY p, e
-    ORDER BY p
+    WHERE cont > 1
 ), revendedoras@carros
-WHERE proprietario = p;
+WHERE proprietario = prop
+ORDER BY proprietario;
 ```
