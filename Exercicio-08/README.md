@@ -42,7 +42,7 @@ WHERE ROWNUM < 2;
 ```
 
 ## c
-````SQL
+```SQL
 SELECT cgc, proprietario
 FROM (
     SELECT *
