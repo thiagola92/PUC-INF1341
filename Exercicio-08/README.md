@@ -65,3 +65,27 @@ FROM automoveis@carros
 GROUP BY fabricante, pais
 ORDER BY fabricante;
 ```
+
+# 3
+```SQL
+SELECT cpf, nome, sobrenome
+FROM consumidores@carros
+WHERE cpf NOT
+IN (
+    SELECT  cpf
+    FROM negocios@carros
+);
+```
+
+```SQL
+CREATE SYNONYM negocios
+FOR negocios@carros;
+
+SELECT cpf, nome, sobrenome
+FROM consumidores@carros
+WHERE cpf NOT
+IN (
+    SELECT  cpf
+    FROM negocios
+);
+```
