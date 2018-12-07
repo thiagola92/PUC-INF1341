@@ -57,3 +57,11 @@ FROM (
 WHERE proprietario = prop
 ORDER BY proprietario;
 ```
+
+## d
+```SQL
+SELECT fabricante, pais
+FROM automoveis@carros
+GROUP BY fabricante, pais
+ORDER BY fabricante;
+```
