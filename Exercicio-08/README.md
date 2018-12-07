@@ -1,3 +1,7 @@
+Dupla:
+Pedro Alvarez - 1210881
+Thiago Lages de Alencar - 1721629
+
 # 1
 
 ```SQL
@@ -102,7 +106,7 @@ END;
 COMMIT;
 ```
 
-````SQL
+```SQL
 CREATE SYNONYM duplica_valor
 FOR duplica_valor@carros;
 
