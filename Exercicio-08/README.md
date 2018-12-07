@@ -95,7 +95,7 @@ IN (
 ```
 
 # 4
-````SQL
+```SQL
 CREATE OR REPLACE PROCEDURE duplica_val(modelo STRING, ano NUMBER)
 AS
 BEGIN
