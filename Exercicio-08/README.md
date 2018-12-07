@@ -89,3 +89,9 @@ IN (
     FROM negocios
 );
 ```
+
+# 4
+````SQL
+CREATE SYNONYM duplica_valor
+FOR duplica_valor@carros;
+```
