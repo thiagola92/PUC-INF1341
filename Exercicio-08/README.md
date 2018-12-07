@@ -1,6 +1,6 @@
-Dupla:
-Pedro Alvarez - 1210881
-Thiago Lages de Alencar - 1721629
+Dupla:  
+Pedro Alvarez - 1210881  
+Thiago Lages de Alencar - 1721629  
 
 # 1
 
