@@ -110,5 +110,3 @@ Precisa ser rodado utilizando 64bits.
   * Em **Type or select the new plataform**
 * Clique OK
 * Clique Close
-
-
