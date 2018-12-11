@@ -35,8 +35,33 @@ Fragmentação Horizontal
 Fragmentação Vertical  
 Replicação  
 
+**Opções de Replicações**:  
+Mestre-Escravo  
+Grupo  
+
 **Opções de Atualizações**:  
-Assíncrona Mestre-Escravo  
-Síncrona Mestre-Escravo  
-Assíncrona Grupo  
-Síncrona Grupo  
+Assíncrona  
+Síncrona  
+
+## a
+**CLIENTES**  
+Replicação  
+Mestre-Escravo/Grupo?  
+Síncrona, um cliente não pode exisitr em um local sim e outro não  
+
+**CLIENTES_PACOTES**  
+Replicação  
+Mestre-Escravo/Grupo?  
+Síncrona, os pacotes do cliente não podem ser diferentes em locais diferentes    
+
+**CLIENTES_UTILIZACOES**  
+Fragmentação Horizontal, com base no CNPJ  
+
+## b
+**PACOTES**  
+Mestre-Escravo, apenas um nó responsável por alterar os pacotes  
+Síncrona, oferecer em todos os lugares os mesmos pacotes   
+
+**ACADEMIAS**  
+Grupo, cada academia deve ter controle sobre seus dados?  
+Assíncrona, cada academia deve ser atualizada quando possível sobre a existência dessa, sem nenhuma pressa  
