@@ -25,5 +25,3 @@ Complex Instruction Set Computer: https://en.wikipedia.org/wiki/Complex_instruct
 # Raid
 
 RAID: https://en.wikipedia.org/wiki/RAID  
-
-*Vou escrever melhor dessa aula quando tiver os slides
