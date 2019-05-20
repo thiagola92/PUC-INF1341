@@ -46,6 +46,11 @@ Agora tudo que eu estou fazendo é seguindo o guia da para **Oracle Database Exp
 https://docs.oracle.com/cd/E17781_01/admin.112/e18585/toc.htm  
 Siga esse guia até terminar a parte 4, isso deve dar o suficiente para poder começar a fazer algo.  
 
+**Atenção**: Versões mais recentes obrigam você a criar user com 'c##' na frente  
+`SQL> create user c##chris identified by <password-for-chris>;`  
+
+**Atenção 2**: A janela de fazer conexão no sql developer mudou também, eles chamam o antigo "connection name" de "name", o resto você deve conseguir deduzir que é igual ao antigo.
+
 # Conectando com Oracle Database utilizando C#
 
 ## Instalando Visual Studio 2017
